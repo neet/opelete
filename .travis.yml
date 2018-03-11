@@ -1,0 +1,24 @@
+language: node_js
+
+node_js:
+  - "8"
+
+sudo: false
+
+cache:
+  directories:
+    - $HOME/.cache/yarn
+    - node_modules
+
+branches:
+  only:
+    - master
+
+install:
+  - yarn
+
+before_script:
+  - npm run build
+
+script:
+  - npm run test

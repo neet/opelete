@@ -1,0 +1,87 @@
+
+root: true
+
+env:
+  browser: true
+  node: true
+  es6: true
+  jest: true
+
+parser: babel-eslint
+
+plugins:
+- import
+
+parserOptions:
+  sourceType: module
+  ecmaFeatures:
+    experimentalObjectRestSpread: true
+  ecmaVersion: 2018
+
+settings:
+  import/extensions:
+  - .js
+  import/ignore:
+  - node_modules
+  - \\.(css|scss|json)$
+
+rules:
+  brace-style: warn
+  comma-dangle:
+  - error
+  - always-multiline
+  comma-spacing:
+  - warn
+  - before: false
+    after: true
+  comma-style:
+  - warn
+  - last
+  consistent-return: error
+  dot-notation: error
+  eqeqeq: error
+  indent:
+  - warn
+  - 2
+  no-catch-shadow: error
+  no-cond-assign: error
+  no-console:
+  - warn
+  - allow:
+    - error
+    - warn
+  no-fallthrough: error
+  no-irregular-whitespace: error
+  no-mixed-spaces-and-tabs: warn
+  no-nested-ternary: warn
+  no-trailing-spaces: warn
+  no-undef: error
+  no-unreachable: error
+  no-unused-expressions: error
+  no-unused-vars:
+  - error
+  - vars: all
+    args: after-used
+    ignoreRestSiblings: true
+  object-curly-spacing:
+  - error
+  - always
+  padded-blocks:
+  - error
+  - classes: always
+  quotes:
+  - error
+  - single
+  semi: error
+  strict: off
+  valid-typeof: error
+
+  import/extensions:
+  - error
+  - always
+  - js: never
+  import/newline-after-import: error
+  import/no-extraneous-dependencies:
+  - error
+  import/no-unresolved: error
+  import/no-webpack-loader-syntax: error
