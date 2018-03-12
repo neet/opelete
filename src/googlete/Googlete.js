@@ -11,7 +11,7 @@ export default class Googlete {
 
   results = [];
 
-  selectedResult = 0;
+  selectedResultIndex = 0;
 
   constructor () {
     this.inputNode      = document.querySelector(INPUT_QUERY);
@@ -19,11 +19,13 @@ export default class Googlete {
 
     // Instantiation Fuse with options
     this.fuse = new Fuse(operators, {
-      shouldSort: false,
-      threshold: 0.0,
       findAllMatches: true,
+      threshold: 0,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
       minMatchCharLength: 1,
-      keys: ['query'],
+      keys: ['operator'],
     });
 
     // Overwrite Google's event listener
@@ -33,27 +35,29 @@ export default class Googlete {
 
     // Create Googlete container element
     // and insert before of default suggestion wrapepr
-    const googleteNode = document.createElement('div');
-    googleteNode.setAttribute('class', 'googlete');
-    googleteNode.setAttribute('dir', 'ltr');
-    this.googleteNode = this.suggestionNode.insertBefore(googleteNode, this.suggestionNode.firstChild);
+    const node = document.createElement('div');
+    node.setAttribute('class', 'googlete');
+    node.setAttribute('dir', 'ltr');
+    this.googleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
   }
 
   handleInput = e => {
     const { value } = e.target;
 
     if ( value === '' ) {
+      this.clearSuggestion();
+      this.disableForceShowSuggestionContainer();
       return;
     }
 
     // Split search form's value by whitespace
     // and search operators by the last word
-    // e.g. "JavaScript site:mozilla.org" to search by "site:mozilla.org"
+    // e.g. "JavaScript site" to search by "site"
     const key = value.match(/([^\s\n]+?)$/)[1];
     this.results = this.fuse.search(key);
 
     this.updateSuggestion();
-    this.forceShowSuggestionContainer();
+    this.enableForceShowSuggestionContainer();
   }
 
   handleKeyDown = e => {
@@ -66,14 +70,14 @@ export default class Googlete {
     case 'ArrowDown':
       e.preventDefault();
       e.stopImmediatePropagation();
-      this.selectedResult = Math.min(this.selectedResult + 1, this.results.length - 1);
+      this.selectedResultIndex = Math.min(this.selectedResultIndex + 1, this.results.length - 1);
       this.updateSuggestion();
       break;
 
     case 'ArrowUp':
       e.preventDefault();
       e.stopImmediatePropagation();
-      this.selectedResult = Math.max(this.selectedResult - 1, 0);
+      this.selectedResultIndex = Math.max(this.selectedResultIndex - 1, 0);
       this.updateSuggestion();
       break;
 
@@ -81,21 +85,20 @@ export default class Googlete {
       e.preventDefault();
       e.stopImmediatePropagation();
 
-      const operator = this.results[this.selectedResult];
-      this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, operator.query);
+      const selectedResult = this.results[this.selectedResultIndex];
+      this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, selectedResult.operator);
 
-      if ( operator.cursorPosition ) {
-        const cursorPosition = this.inputNode.value.length - operator.query.length + operator.cursorPosition;
+      if ( selectedResult.cursorPosition ) {
+        const cursorPosition = this.inputNode.value.length - selectedResult.operator.length + selectedResult.cursorPosition;
         this.inputNode.setSelectionRange(cursorPosition, cursorPosition);
       }
 
-      if ( operator.insertWhiteSpace ) {
+      if ( selectedResult.insertWhiteSpace ) {
         this.inputNode.value += ' ';
       }
 
-      this.results = [];
-      this.selectedResult = 0;
-      this.updateSuggestion();
+      this.clearSuggestion();
+      this.disableForceShowSuggestionContainer();
       break;
     }
   }
@@ -105,9 +108,9 @@ export default class Googlete {
 
     this.results.forEach((result, i) => {
       items += `
-        <li class='googlete-list-item ${ i === this.selectedResult ? 'googlete-list-item--selected' : '' }'>
+        <li class='googlete-list-item ${ i === this.selectedResultIndex ? 'googlete-list-item--selected' : '' }'>
           <code class='googlete-list-item__query'>
-            ${ result.query }
+            ${ result.operator }
           </code>
 
           <p class='googlete-list-item__description'>
@@ -124,8 +127,20 @@ export default class Googlete {
     `;
   }
 
-  forceShowSuggestionContainer = () => {
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).style.display = 'block';
+  clearSuggestion = () => {
+    this.results = [];
+    this.selectedResultIndex = 0;
+    this.updateSuggestion();
+  }
+
+  enableForceShowSuggestionContainer = () => {
+    document.querySelector(SUGGESTION_QUERY).classList.add('force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('force-show');
+  }
+
+  disableForceShowSuggestionContainer = () => {
+    document.querySelector(SUGGESTION_QUERY).classList.remove('force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('force-show');
   }
 
 }

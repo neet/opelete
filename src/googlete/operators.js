@@ -1,204 +1,173 @@
 export default [
   {
-    query:       '""',
+    operator:    '""',
     description: 'Search for an exact match',
     cursorPosition: 1,
   },
 
   {
-    query:       '-""',
-    description: '',
+    operator:    '-""',
+    description: 'Exclude specific word from your search',
     cursorPosition: 2,
   },
 
   {
-    query:       '" * "',
+    operator:    '" * "',
     description: 'Search for wildcards or unknown words',
     cursorPosition: 1,
   },
 
   {
-    query:       '...',
+    operator:    '...',
     description: 'Search within a range of numbers',
+    cursorPosition: 0,
   },
 
   {
-    query:       'OR',
+    operator:    'OR',
     description: 'Combine searches',
     insertWhiteSpace: true,
   },
 
   {
-    query:       'AROUND()',
-    description: '',
+    operator:    'group:',
+    description: 'Search Google Groups',
+  },
+
+  {
+    operator:    'AROUND()',
+    description: 'Search for where the two phrases are within n words of each other',
     cursorPosition: 7,
   },
 
   {
-    query:       '( OR )',
-    description: 'Combine searches',
-    cursorPosition: 1,
-  },
-
-  {
-    query:       'site:',
+    operator:    'site:',
     description: 'Search for a specific site',
   },
 
   {
-    query:       '-site:',
+    operator:    '-site:',
     description: 'Exclude specific site from your search',
   },
 
   {
-    query:       'related:',
-    description: 'Search for related sites',
+    operator:    'related:',
+    description: 'Search for related sites of the URL',
   },
 
   {
-    query:       'info:',
+    operator:    'info:',
     description: 'Get details about a site',
   },
 
   {
-    query:       'cache:',
+    operator:    'id:',
+    description: 'Get details about a site',
+  },
+
+  {
+    operator:    'cache:',
     description: 'See Google’s cached version of a site',
   },
 
   {
-    query:       'link:',
-    description: '',
+    operator:    'link:',
+    description: 'Search for pages that point to that URL',
   },
 
   {
-    query:       '-link:',
-    description: '',
-  },
-
-  {
-    query:       'linkdomain:',
-    description: '',
-  },
-
-  {
-    query:       '-linkdomain:',
-    description: '',
-  },
-
-  {
-    query:       'filetype:',
+    operator:    'filetype:',
     description: 'Search for a specific file extension',
   },
 
   {
-    query:       'intitle:',
-    description: 'Search for a specific title',
+    operator:    'ext:',
+    description: 'Search for a specific file extension',
   },
 
   {
-    query:       'allintitle:',
-    description: 'Search for a specific title',
+    operator:    'intitle:',
+    description: 'Search for pages contains the term in the title',
   },
 
   {
-    query:       'inurl:',
-    description: 'Search for a specific URL',
+    operator:    'insubject:',
+    description: 'Search for pages contains the term in the title',
   },
 
   {
-    query:       'allinurl:',
-    description: 'Search for a specific URL',
+    operator:    'allintitle:',
+    description: 'Search for pages contains all the terms in the title',
   },
 
   {
-    query:       'intext:',
-    description: 'Search for a specific text',
+    operator:    'inurl:',
+    description: 'Search for pages contains the term in the URL',
   },
 
   {
-    query:       'allintext:',
-    description: 'Search for a specific text',
+    operator:    'allinurl:',
+    description: 'Search for pages contains all the terms in the URL',
   },
 
   {
-    query:       'inanchor:',
-    description: 'Search for a specific text',
+    operator:    'intext:',
+    description: 'Search for pages contains the term in the text',
   },
 
   {
-    query:       'allinanchor:',
-    description: 'Search for a specific text',
+    operator:    'allintext:',
+    description: 'Search for pages contains all the terms in the text',
   },
 
   {
-    query:       'inpostauthor:',
-    description: 'Search for a specific text',
+    operator:    'inanchor:',
+    description: 'Search for pages contains the term in the anchor',
   },
 
   {
-    query:       'allinpostauthor:',
-    description: 'Search for a specific text',
+    operator:    'allinanchor:',
+    description: 'Search for pages contains all the terms in the anchor',
   },
 
   {
-    query:       'weather:',
-    description: 'Search for a specific text',
+    operator:    'author:',
+    description: 'Search for pages contains term in the author',
   },
 
   {
-    query:       'loc:',
-    description: 'Search for a specific text',
+    operator:    'weather:',
+    description: 'Show weather forecast of the place',
   },
 
   {
-    query:       'location:',
-    description: 'Search for a specific text',
+    operator:    'location:',
+    description: 'Search for articles from the location',
   },
 
   {
-    quert:       'map:',
-    description: '',
+    operator:    'define:',
+    description: 'Search for definition of the word',
   },
 
   {
-    query:       'define:',
-    description: 'Search for a specific text',
+    operator:    'source:',
+    description: 'Search for articles from the news source',
   },
 
   {
-    query:       'daterange:-',
-    description: 'Search for a specific text',
-    cursorPosition: 10,
+    operator:    'movie:',
+    description: 'Get information about the movie',
   },
 
   {
-    query:       'source:',
-    description: 'Search for a specific text',
-  },
-
-  {
-    query:       'movie:',
-    description: 'Search for a specific text',
-  },
-
-  {
-    query:       'phonebook:',
-    description: 'Search for a specific text',
-  },
-
-  {
-    query:       'stock:',
-    description: 'Search for a specific text',
-  },
-
-  {
-    query:       '@twitter',
+    operator:    '@twitter',
     description: 'Search Twitter',
     insertWhiteSpace: true,
   },
 
   {
-    query:       '@facebook',
+    operator:    '@facebook',
     description: 'Search Facebook',
     insertWhiteSpace: true,
   },
