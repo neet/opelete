@@ -1,88 +1,131 @@
 import Fuse from 'fuse.js';
-import autocompleteList from './autocomplete_list';
-import { INPUT_QUERY, SUGGESTION_LIST_QUERY } from './constants';
+import operators from './operators';
+
+import {
+  INPUT_QUERY,
+  SUGGESTION_QUERY,
+  SUGGESTION_CONTAINER_QUERY,
+} from './constants';
 
 export default class Googlete {
 
+  results = [];
+
+  selectedResult = 0;
+
   constructor () {
-    setTimeout(() => {
-      this.input = document.querySelector(INPUT_QUERY);
+    this.inputNode      = document.querySelector(INPUT_QUERY);
+    this.suggestionNode = document.querySelector(SUGGESTION_QUERY);
 
-      if ( this.input !== null ) {
-        this.input.onkeydown = this.handleChange;
+    // Instantiation Fuse with options
+    this.fuse = new Fuse(operators, {
+      shouldSort: false,
+      threshold: 0.0,
+      findAllMatches: true,
+      minMatchCharLength: 1,
+      keys: ['query'],
+    });
 
-        const googleteNode = document.createElement('div');
-        googleteNode.setAttribute('class', 'googlete');
-        googleteNode.setAttribute('dir', 'ltr');
+    // Overwrite Google's event listener
+    this.inputNode.addEventListener('input', this.handleInput, true);
+    this.inputNode.addEventListener('keydown', this.handleKeyDown, true);
+    document.addEventListener('keydown', this.handleKeyDown, true);
 
-        this.suggestionContainer = document.querySelector(SUGGESTION_LIST_QUERY);
-        this.googleteNode = this.suggestionContainer.insertBefore(googleteNode, this.suggestionContainer.firstElementChild);
-      }
-    }, 200);
+    // Create Googlete container element
+    // and insert before of default suggestion wrapepr
+    const googleteNode = document.createElement('div');
+    googleteNode.setAttribute('class', 'googlete');
+    googleteNode.setAttribute('dir', 'ltr');
+    this.googleteNode = this.suggestionNode.insertBefore(googleteNode, this.suggestionNode.firstChild);
   }
 
-  handleChange = e => {
-    if ( e.target.value === '' ) {
+  handleInput = e => {
+    const { value } = e.target;
+
+    if ( value === '' ) {
       return;
     }
 
-    const key = e.target.value.split(' ').pop();
-    const autocompletes = this.searchAutocompletes(key);
+    // Split search form's value by whitespace
+    // and search operators by the last word
+    // e.g. "JavaScript site:mozilla.org" to search by "site:mozilla.org"
+    const key = value.match(/([^\s\n]+?)$/)[1];
+    this.results = this.fuse.search(key);
 
-    if ( autocompletes.length !== 0 ) {
-      const HTMLstring = this.buildAutocompleteElement(autocompletes);
-      this.setAsSuggestion(HTMLstring);
-      this.showSuggestion();
+    this.updateSuggestion();
+    this.forceShowSuggestionContainer();
+  }
+
+  handleKeyDown = e => {
+    if ( this.results.length === 0 ) {
+      return;
+    }
+
+    switch(e.key) {
+
+    case 'ArrowDown':
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      this.selectedResult = Math.min(this.selectedResult + 1, this.results.length - 1);
+      this.updateSuggestion();
+      break;
+
+    case 'ArrowUp':
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      this.selectedResult = Math.max(this.selectedResult - 1, 0);
+      this.updateSuggestion();
+      break;
+
+    case 'Enter':
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
+      const operator = this.results[this.selectedResult];
+      this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, operator.query);
+
+      if ( operator.cursorPosition ) {
+        const cursorPosition = this.inputNode.value.length - operator.query.length + operator.cursorPosition;
+        this.inputNode.setSelectionRange(cursorPosition, cursorPosition);
+      }
+
+      if ( operator.insertWhiteSpace ) {
+        this.inputNode.value += ' ';
+      }
+
+      this.results = [];
+      this.selectedResult = 0;
+      this.updateSuggestion();
+      break;
     }
   }
 
-  searchAutocompletes = value => {
-    const options = {
-      shouldSort: false,
-      threshold: 0.1,
-      location: 0,
-      distance: 100,
-      maxPatternLength: 32,
-      minMatchCharLength: 1,
-      keys: ['query'],
-    };
-
-    var fuse = new Fuse(autocompleteList, options);
-
-    return fuse.search(value);
-  }
-
-  buildAutocompleteElement = autocompletes => {
+  updateSuggestion = () => {
     let items = '';
 
-    autocompletes.forEach(autocomplete => {
+    this.results.forEach((result, i) => {
       items += `
-        <li class='googlete-list-item'>
+        <li class='googlete-list-item ${ i === this.selectedResult ? 'googlete-list-item--selected' : '' }'>
           <code class='googlete-list-item__query'>
-            <i class='far fa-keyboard' aria-hidden='true'></i>
-            ${ autocomplete.query }
+            ${ result.query }
           </code>
 
           <p class='googlete-list-item__description'>
-            ${ autocomplete.description }
+            ${ result.description }
           </p>
         </li>
       `;
     });
 
-    return `
+    this.googleteNode.innerHTML = `
       <ul class='googlete-list'>
         ${ items }
       </ul>
     `;
   }
 
-  setAsSuggestion = HTMLstring => {
-    this.googleteNode.innerHTML = HTMLstring;
-  }
-
-  showSuggestion = () => {
-    this.suggestionContainer.style.display = 'block';
+  forceShowSuggestionContainer = () => {
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).style.display = 'block';
   }
 
 }
