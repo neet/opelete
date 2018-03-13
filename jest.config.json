@@ -1,0 +1,18 @@
+{
+  "projects": [
+    "<rootDir>/src/googlete"
+  ],
+  "testPathIgnorePatterns": [
+    "<rootDir>/node_modules/"
+  ],
+  "setupFiles": [
+    "<rootDir>/src/googlete/test_setup.js"
+  ],
+  "collectCoverageFrom": [
+    "src/googlete/**/*.js"
+  ],
+  "coverageDirectory": "<rootDir>/coverage",
+  "transform": {
+    "^.+\\.js$": "babel-jest"
+  }
+}

@@ -3,16 +3,20 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "test": "npm run test:lint",
+    "test": "npm run test:lint && npm run test:jest",
     "test:lint": "eslint -c .eslintrc.yml --ext=js src/",
-    "build": "webpack --mode=production --no-progress --hide-modules && web-ext run -s extension/",
+    "test:jest": "cross-env NODE_ENV=test jest --coverage --config jest.config.json",
+    "build:prod": "webpack --mode=production --no-progress --hide-modules",
+    "build:dev": "webpack --mode=development --no-progress --hide-modules",
     "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.4",
     "css-loader": "^0.28.10",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fuse.js": "^3.2.0",
@@ -25,8 +29,10 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
+    "babel-jest": "^22.4.1",
     "eslint": "^4.18.2",
     "eslint-plugin-import": "^2.9.0",
+    "jest": "^22.4.2",
     "web-ext": "^2.4.0"
   }
 }

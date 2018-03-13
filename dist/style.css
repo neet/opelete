@@ -1,0 +1,30 @@
+.googlete {
+  display: block; }
+
+.googlete-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none; }
+
+.googlete-list-item {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 0 16px; }
+  .googlete-list-item--selected {
+    background-color: #eeeeee; }
+
+.googlete-list-item__query {
+  display: block;
+  margin-right: 8px; }
+
+.googlete-list-item__description {
+  flex-grow: 1;
+  margin: 0;
+  color: #808080;
+  text-align: right;
+  font-style: italic; }
+
+.googlete-force-show {
+  display: block !important; }

@@ -1,6 +1,5 @@
 import Fuse from 'fuse.js';
 import operators from './operators';
-
 import {
   INPUT_QUERY,
   SUGGESTION_QUERY,
@@ -14,8 +13,9 @@ export default class Googlete {
   selectedResultIndex = 0;
 
   constructor () {
-    this.inputNode      = document.querySelector(INPUT_QUERY);
-    this.suggestionNode = document.querySelector(SUGGESTION_QUERY);
+    this.inputNode               = document.querySelector(INPUT_QUERY);
+    this.suggestionNode          = document.querySelector(SUGGESTION_QUERY);
+    this.suggestionContainerNode = document.querySelector(SUGGESTION_CONTAINER_QUERY);
 
     // Instantiation Fuse with options
     this.fuse = new Fuse(operators, {
@@ -46,7 +46,7 @@ export default class Googlete {
 
     if ( value === '' ) {
       this.clearSuggestion();
-      this.disableForceShowSuggestionContainer();
+      this.disableForceShowSuggestion();
       return;
     }
 
@@ -57,7 +57,7 @@ export default class Googlete {
     this.results = this.fuse.search(key);
 
     this.updateSuggestion();
-    this.enableForceShowSuggestionContainer();
+    this.enableForceShowSuggestion();
   }
 
   handleKeyDown = e => {
@@ -98,7 +98,7 @@ export default class Googlete {
       }
 
       this.clearSuggestion();
-      this.disableForceShowSuggestionContainer();
+      this.disableForceShowSuggestion();
       break;
     }
   }
@@ -133,14 +133,14 @@ export default class Googlete {
     this.updateSuggestion();
   }
 
-  enableForceShowSuggestionContainer = () => {
-    document.querySelector(SUGGESTION_QUERY).classList.add('googlete-force-show');
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('googlete-force-show');
+  enableForceShowSuggestion = () => {
+    this.suggestionNode.classList.add('googlete-force-show');
+    this.suggestionContainerNode.classList.add('googlete-force-show');
   }
 
-  disableForceShowSuggestionContainer = () => {
-    document.querySelector(SUGGESTION_QUERY).classList.remove('googlete-force-show');
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('googlete-force-show');
+  disableForceShowSuggestion = () => {
+    this.suggestionNode.classList.remove('googlete-force-show');
+    this.suggestionContainerNode.classList.remove('googlete-force-show');
   }
 
 }
