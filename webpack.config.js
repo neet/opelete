@@ -1,5 +1,6 @@
 const path    = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const config = {
 
@@ -55,6 +56,16 @@ const config = {
       allChunks: true,
       publicPath: '/dist/',
     }),
+
+    new CopyWebpackPlugin([
+      { from: './src/images/icon.png',          to: './' },
+      { from: './src/images/icon@2x.png',       to: './' },
+      { from: './src/config/manifest.json',     to: './' },
+      { from: './src/images/icon-dark-16.png',  to: './' },
+      { from: './src/images/icon-dark-32.png',  to: './' },
+      { from: './src/images/icon-light-16.png', to: './' },
+      { from: './src/images/icon-light-32.png', to: './' },
+    ]),
   ],
 
 };

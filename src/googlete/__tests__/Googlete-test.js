@@ -37,7 +37,6 @@ describe('Googlete', () => {
     it('gives .force-show class to suggestion', () => {
       googlete.enableForceShowSuggestion();
       expect(googlete.suggestionNode.classList.contains('googlete-force-show')).toBe(true);
-      expect(googlete.suggestionContainerNode.classList.contains('googlete-force-show')).toBe(true);
     });
   });
 
@@ -45,7 +44,6 @@ describe('Googlete', () => {
     it('removes .force-show class to suggestion', () => {
       googlete.disableForceShowSuggestion();
       expect(googlete.suggestionNode.classList.contains('googlete-force-show')).toBe(false);
-      expect(googlete.suggestionContainerNode.classList.contains('googlete-force-show')).toBe(false);
     });
   });
 });

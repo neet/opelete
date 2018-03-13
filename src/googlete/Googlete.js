@@ -13,9 +13,8 @@ export default class Googlete {
   selectedResultIndex = 0;
 
   constructor () {
-    this.inputNode               = document.querySelector(INPUT_QUERY);
-    this.suggestionNode          = document.querySelector(SUGGESTION_QUERY);
-    this.suggestionContainerNode = document.querySelector(SUGGESTION_CONTAINER_QUERY);
+    this.inputNode      = document.querySelector(INPUT_QUERY);
+    this.suggestionNode = document.querySelector(SUGGESTION_QUERY);
 
     // Instantiation Fuse with options
     this.fuse = new Fuse(operators, {
@@ -135,12 +134,12 @@ export default class Googlete {
 
   enableForceShowSuggestion = () => {
     this.suggestionNode.classList.add('googlete-force-show');
-    this.suggestionContainerNode.classList.add('googlete-force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('googlete-force-show');
   }
 
   disableForceShowSuggestion = () => {
     this.suggestionNode.classList.remove('googlete-force-show');
-    this.suggestionContainerNode.classList.remove('googlete-force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('googlete-force-show');
   }
 
 }
