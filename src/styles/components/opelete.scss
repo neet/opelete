@@ -1,14 +1,14 @@
-.googlete {
+.opelete {
   display: block;
 }
 
-.googlete-list {
+.opelete-list {
   display: flex;
   flex-direction: column;
   list-style: none;
 }
 
-.googlete-list-item {
+.opelete-list-item {
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -20,12 +20,12 @@
   }
 }
 
-.googlete-list-item__operator {
+.opelete-list-item__operator {
   display: block;
   margin-right: 8px;
 }
 
-.googlete-list-item__description {
+.opelete-list-item__description {
   flex-grow: 1;
   margin: 0;
   color: #808080;
@@ -33,6 +33,6 @@
   font-style: italic;
 }
 
-.googlete-force-show {
+.opelete-force-show {
   display: block !important;
 }

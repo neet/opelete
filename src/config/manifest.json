@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Googlete",
+  "name": "Opelete",
   "version": "1.0",
   "author": "Neetshin",
-  "homepage_url": "https://github.com/neetshin/googlete",
+  "homepage_url": "https://github.com/neetshin/opelete",
   "description": "A browser extension that autocompletes Google's search operators",
 
   "applications": {
@@ -20,7 +20,7 @@
 
   "browser_action": {
     "browser_style": true,
-    "default_title": "Googlete",
+    "default_title": "Opelete",
     "default_icon": {
       "16": "icon-light-16.png",
       "32": "icon-light-32.png"

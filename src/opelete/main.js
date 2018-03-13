@@ -1,5 +1,5 @@
 import ready from './ready';
-import Googlete from './Googlete';
+import Opelete from './Opelete';
 import { INPUT_QUERY, SUGGESTION_QUERY } from './constants';
 
 function main () {
@@ -10,7 +10,7 @@ function main () {
 
       if ( inputNode && suggestionNode ) {
         self.disconnect();
-        new Googlete();
+        new Opelete();
       }
     });
 

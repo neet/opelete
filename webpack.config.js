@@ -7,7 +7,7 @@ const config = {
   stats: { errorDetails: true },
 
   entry: {
-    main: './src/googlete/main.js',
+    main: './src/opelete/main.js',
     style: './src/styles/main.scss',
   },
 

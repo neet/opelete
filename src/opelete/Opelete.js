@@ -6,7 +6,7 @@ import {
   SUGGESTION_CONTAINER_QUERY,
 } from './constants';
 
-export default class Googlete {
+export default class Opelete {
 
   results = [];
 
@@ -27,17 +27,17 @@ export default class Googlete {
       keys: ['operator'],
     });
 
-    // Overwrite Google's event listener
+    // Overwrite Google's event listener!
     this.inputNode.addEventListener('input', this.handleInput, true);
     this.inputNode.addEventListener('keydown', this.handleKeyDown, true);
     document.addEventListener('keydown', this.handleKeyDown, true);
 
-    // Create Googlete container element
+    // Create Opelete container element
     // and insert before of original suggestion's wrapepr
     const node = document.createElement('div');
-    node.setAttribute('class', 'googlete');
+    node.setAttribute('class', 'opelete');
     node.setAttribute('dir', 'ltr');
-    this.googleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
+    this.opeleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
   }
 
   handleInput = e => {
@@ -105,18 +105,18 @@ export default class Googlete {
   updateSuggestion = () => {
     const listItems = this.results.map((result, i) => {
       const listItem = document.createElement('li');
-      listItem.classList.add('googlete-list-item');
+      listItem.classList.add('opelete-list-item');
 
       if ( i === this.selectedResultIndex ) {
-        listItem.classList.add('googlete-list-item--selected');
+        listItem.classList.add('opelete-list-item--selected');
       }
 
       const operator = document.createElement('code');
-      operator.classList.add('googlete-list-item__query');
+      operator.classList.add('opelete-list-item__query');
       operator.textContent = result.operator;
 
       const description = document.createElement('p');
-      description.classList.add('googlete-list-item__description');
+      description.classList.add('opelete-list-item__description');
       description.textContent = result.description;
 
       listItem.appendChild(operator);
@@ -126,16 +126,16 @@ export default class Googlete {
     });
 
     const list = document.createElement('ul');
-    list.classList.add('googlete-list');
+    list.classList.add('opelete-list');
     listItems.forEach(item => {
       list.appendChild(item);
     });
 
-    if ( this.googleteNode.firstChild ) {
-      this.googleteNode.removeChild(this.googleteNode.firstChild);
+    if ( this.opeleteNode.firstChild ) {
+      this.opeleteNode.removeChild(this.opeleteNode.firstChild);
     }
 
-    this.googleteNode.appendChild(list);
+    this.opeleteNode.appendChild(list);
   }
 
   clearSuggestion = () => {
@@ -145,13 +145,13 @@ export default class Googlete {
   }
 
   enableForceShowSuggestion = () => {
-    this.suggestionNode.classList.add('googlete-force-show');
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('googlete-force-show');
+    this.suggestionNode.classList.add('opelete-force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('opelete-force-show');
   }
 
   disableForceShowSuggestion = () => {
-    this.suggestionNode.classList.remove('googlete-force-show');
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('googlete-force-show');
+    this.suggestionNode.classList.remove('opelete-force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('opelete-force-show');
   }
 
 }

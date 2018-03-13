@@ -1,15 +1,15 @@
 {
   "projects": [
-    "<rootDir>/src/googlete"
+    "<rootDir>/src/opelete"
   ],
   "testPathIgnorePatterns": [
     "<rootDir>/node_modules/"
   ],
   "setupFiles": [
-    "<rootDir>/src/googlete/test_setup.js"
+    "<rootDir>/src/opelete/test_setup.js"
   ],
   "collectCoverageFrom": [
-    "src/googlete/**/*.js"
+    "src/opelete/**/*.js"
   ],
   "coverageDirectory": "<rootDir>/coverage",
   "transform": {
