@@ -117,7 +117,7 @@ export default class Googlete {
 
       const description = document.createElement('p');
       description.classList.add('googlete-list-item__description');
-      description.textContent = result.textContent;
+      description.textContent = result.description;
 
       listItem.appendChild(operator);
       listItem.appendChild(description);
