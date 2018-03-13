@@ -103,33 +103,39 @@ export default class Googlete {
   }
 
   updateSuggestion = () => {
-    let items = '';
+    const listItems = this.results.map((result, i) => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('googlete-list-item');
 
-    this.results.forEach((result, i) => {
-      items += `
-        <li class='googlete-list-item ${ i === this.selectedResultIndex ? 'googlete-list-item--selected' : '' }'>
-          <code class='googlete-list-item__query'>
-            ${ result.operator }
-          </code>
+      if ( i === this.selectedResultIndex ) {
+        listItem.classList.add('googlete-list-item--selected');
+      }
 
-          <p class='googlete-list-item__description'>
-            ${ result.description }
-          </p>
-        </li>
-      `;
+      const operator = document.createElement('code');
+      operator.classList.add('googlete-list-item__query');
+      operator.textContent = result.operator;
+
+      const description = document.createElement('p');
+      description.classList.add('googlete-list-item__description');
+      description.textContent = result.textContent;
+
+      listItem.appendChild(operator);
+      listItem.appendChild(description);
+
+      return listItem;
     });
 
-    const list = `
-      <ul class='googlete-list'>
-        ${ items }
-      </ul>
-    `;
+    const list = document.createElement('ul');
+    list.classList.add('googlete-list');
+    listItems.forEach(item => {
+      list.appendChild(item);
+    });
 
-    while (this.googleteNode.firstChild) {
+    if ( this.googleteNode.firstChild ) {
       this.googleteNode.removeChild(this.googleteNode.firstChild);
     }
 
-    this.googleteNode.insertAdjacentHTML('beforeend', list);
+    this.googleteNode.appendChild(list);
   }
 
   clearSuggestion = () => {

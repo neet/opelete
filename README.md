@@ -9,5 +9,14 @@ A browser extension that autocompletes Google's search operators
 ## Install to your browser
 wip
 
+## Development
+Run following command:
+```
+yarn --pure-lockfile
+npm run build:production
+```
+
+Transpired code will be output in `dist` directory.
+
 ## License
 MIT
