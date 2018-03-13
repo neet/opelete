@@ -8,7 +8,7 @@
 
   "applications": {
     "gecko": {
-      "id": "addon@example.com",
+      "id": "{da021c91-98c1-442b-8626-110775c3787d}",
       "strict_min_version": "57.0"
     }
   },
