@@ -13,7 +13,7 @@ wip
 Run following command:
 ```
 yarn --pure-lockfile
-npm run build:production
+npm run build:prod
 ```
 
 Transpired code will be output in `dist` directory.
