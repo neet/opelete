@@ -8,6 +8,7 @@
     "test:jest": "cross-env NODE_ENV=test jest --coverage --config jest.config.json",
     "build:prod": "webpack --mode=production --no-progress --hide-modules",
     "build:dev": "webpack --mode=development --no-progress --hide-modules",
+    "debug": "npm run build:dev && web-ext run -s dist/",
     "postinstall": "npm rebuild node-sass"
   },
   "dependencies": {

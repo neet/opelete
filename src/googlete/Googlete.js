@@ -33,7 +33,7 @@ export default class Googlete {
     document.addEventListener('keydown', this.handleKeyDown, true);
 
     // Create Googlete container element
-    // and insert before of default suggestion wrapepr
+    // and insert before of original suggestion's wrapepr
     const node = document.createElement('div');
     node.setAttribute('class', 'googlete');
     node.setAttribute('dir', 'ltr');
@@ -119,11 +119,17 @@ export default class Googlete {
       `;
     });
 
-    this.googleteNode.innerHTML = `
+    const list = `
       <ul class='googlete-list'>
         ${ items }
       </ul>
     `;
+
+    while (this.googleteNode.firstChild) {
+      this.googleteNode.removeChild(this.googleteNode.firstChild);
+    }
+
+    this.googleteNode.insertAdjacentHTML('beforeend', list);
   }
 
   clearSuggestion = () => {
