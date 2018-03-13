@@ -1,6 +1,15 @@
 {
   "presets": [
-    "env"
+    [
+      "env",
+      {
+        "loose": true,
+        "modules": false,
+        "targets": {
+          "browsers": ["last 2 versions", "IE >= 11", "iOS >= 9"]
+        }
+      }
+    ]
   ],
 
   "plugins": [

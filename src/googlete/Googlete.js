@@ -134,13 +134,13 @@ export default class Googlete {
   }
 
   enableForceShowSuggestionContainer = () => {
-    document.querySelector(SUGGESTION_QUERY).classList.add('force-show');
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('force-show');
+    document.querySelector(SUGGESTION_QUERY).classList.add('googlete-force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.add('googlete-force-show');
   }
 
   disableForceShowSuggestionContainer = () => {
-    document.querySelector(SUGGESTION_QUERY).classList.remove('force-show');
-    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('force-show');
+    document.querySelector(SUGGESTION_QUERY).classList.remove('googlete-force-show');
+    document.querySelector(SUGGESTION_CONTAINER_QUERY).classList.remove('googlete-force-show');
   }
 
 }

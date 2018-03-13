@@ -13,8 +13,8 @@ const config = {
   output: {
     filename: '[name].js',
     chunkFilename: '[name].js',
-    path: path.resolve(__dirname, 'extension'),
-    publicPath: '/extension/',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/',
   },
 
   module: {
@@ -53,7 +53,7 @@ const config = {
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true,
-      publicPath: '/extension/',
+      publicPath: '/dist/',
     }),
   ],
 

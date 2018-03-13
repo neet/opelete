@@ -1,8 +1,14 @@
 {
-
   "manifest_version": 2,
   "name": "googlete",
   "version": "1.0",
+
+  "applications": {
+    "gecko": {
+      "id": "addon@example.com",
+      "strict_min_version": "48.0"
+    }
+  },
 
   "browser_action": {
     "browser_style": true,
@@ -400,7 +406,7 @@
         "https://www.google.co.za/*",
         "https://www.google.co.zm/*",
         "https://www.google.co.zw/*",
-        "https://www.google.cat/search/*"
+        "https://www.google.cat/*"
       ],
       "js": [
         "main.js"
