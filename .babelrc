@@ -6,14 +6,12 @@
         "loose": true,
         "modules": false,
         "targets": {
-          "browsers": ["last 2 versions", "IE >= 11", "iOS >= 9"]
+          "browsers": ["last 2 versions"]
         }
       }
-    ]
-  ],
-
-  "plugins": [
-    "transform-class-properties"
+    ],
+    "stage-2",
+    "react"
   ],
 
   "env": {

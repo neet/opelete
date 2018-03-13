@@ -8,6 +8,7 @@ const config = {
 
   entry: {
     main: './src/opelete/main.js',
+    popup: './src/opelete/popup/popup.js',
     style: './src/styles/main.scss',
   },
 
@@ -58,9 +59,10 @@ const config = {
     }),
 
     new CopyWebpackPlugin([
+      { from: './src/config/manifest.json',     to: './' },
+      { from: './src/opelete/popup/popup.html', to: './' },
       { from: './src/images/icon.png',          to: './' },
       { from: './src/images/icon@2x.png',       to: './' },
-      { from: './src/config/manifest.json',     to: './' },
       { from: './src/images/icon-dark-16.png',  to: './' },
       { from: './src/images/icon-dark-32.png',  to: './' },
       { from: './src/images/icon-light-16.png', to: './' },

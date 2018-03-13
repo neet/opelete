@@ -2,7 +2,7 @@ import ready from './ready';
 import Opelete from './Opelete';
 import { INPUT_QUERY, SUGGESTION_QUERY } from './constants';
 
-function main () {
+(function() {
   ready(() => {
     const mo = new MutationObserver((_, self) => {
       const inputNode      = document.querySelector(INPUT_QUERY);
@@ -16,6 +16,4 @@ function main () {
 
     mo.observe(document.body, { childList: true });
   });
-}
-
-main();
+}());
