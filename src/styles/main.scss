@@ -10,11 +10,11 @@
 
 .opelete-list-item {
   display: flex;
-  align-items: center;
   font-size: 16px;
   line-height: 22px;
   padding: 0 16px;
 
+  &:hover,
   &--focused {
     background-color: #eeeeee;
   }
@@ -22,6 +22,7 @@
 
 .opelete-list-item__operator {
   display: block;
+  flex-basis: 20%;
   margin-right: 8px;
 }
 
@@ -31,6 +32,8 @@
   color: #808080;
   text-align: right;
   font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .opelete-force-show {
