@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ready from '../ready';
+import ready from '../opelete/ready';
 import Popup from './components/Popup';
 
 (function() {
