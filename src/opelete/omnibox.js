@@ -10,7 +10,10 @@ browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   const keyword = text.match(/([^\s\n]+?)$/)[1];
   const results = searchOperators(keyword);
 
-  addSuggestions(buildSuggestResultsFromOperators(results));
+  addSuggestions(results.map(operator => ({
+    content: operator.operator,
+    description: operator.description,
+  })));
 });
 
 browser.omnibox.onInputEntered.addListener((text, disposition) => {
@@ -20,18 +23,13 @@ browser.omnibox.onInputEntered.addListener((text, disposition) => {
   case 'currentTab':
     browser.tabs.update({ url });
     break;
+
   case 'newForegroundTab':
     browser.tabs.create({ url });
     break;
+
   case 'newBackgroundTab':
     browser.tabs.create({ url, active: false });
     break;
   }
 });
-
-function buildSuggestResultsFromOperators(operators) {
-  return operators.map(operator => ({
-    content: operator.operator,
-    description: operator.description,
-  }));
-}

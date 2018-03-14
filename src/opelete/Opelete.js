@@ -41,7 +41,7 @@ export default class Opelete {
     // and search operators by the last word
     // e.g. "JavaScript site" to search by "site"
     const keyword = value.match(/([^\s\n]+?)$/)[1];
-    this.results = searchOperators(keyword);
+    this.results  = searchOperators(keyword);
 
     this.updateSuggestion();
     this.enableForceShowSuggestion();
