@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "test": "npm run test:lint && npm run test:jest",
+    "test": "npm run test:lint",
     "test:lint": "eslint -c .eslintrc.yml --ext=js src/",
     "test:jest": "cross-env NODE_ENV=test jest --coverage --config jest.config.json",
     "build:prod": "webpack --mode=production --no-progress --hide-modules",
@@ -40,6 +40,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-react": "^7.7.0",
     "jest": "^22.4.2",
+    "jest-webextension-mock": "^3.3.0",
     "web-ext": "^2.4.0"
   }
 }
