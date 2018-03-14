@@ -10,6 +10,7 @@ const config = {
   entry: {
     'main': './src/opelete/main.js',
     'popup': './src/popup/popup.js',
+    'omnibox': './src/opelete/omnibox.js',
     'main-style': './src/styles/main.scss',
     'popup-style': './src/styles/popup.scss',
   },
