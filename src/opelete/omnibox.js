@@ -1,35 +1,20 @@
-import Fuse from 'fuse.js';
-import operators from './operators';
+import { searchOperators } from './operators';
 
 const baseURL = 'https://google.com/search';
-
-const fuse = new Fuse(operators, {
-  findAllMatches: true,
-  threshold: 0,
-  location: 0,
-  distance: 100,
-  maxPatternLength: 32,
-  minMatchCharLength: 1,
-  keys: ['operator'],
-});
 
 browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   if ( text === '' ) {
     return;
   }
 
-  const key = text.match(/([^\s\n]+?)$/)[1];
-  const results = fuse.search(key);
+  const keyword = text.match(/([^\s\n]+?)$/)[1];
+  const results = searchOperators(keyword);
 
   addSuggestions(buildSuggestResultsFromOperators(results));
 });
 
 browser.omnibox.onInputEntered.addListener((text, disposition) => {
-  let url = text;
-
-  if (!text.startsWith(baseURL)) {
-    url = `${baseURL}?q=${text}`;
-  }
+  const url = !text.startsWith(baseURL) ? `${baseURL}?q=${text}` : text;
 
   switch (disposition) {
   case 'currentTab':

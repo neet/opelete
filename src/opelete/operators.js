@@ -1,4 +1,6 @@
-export default [
+import Fuse from 'fuse.js';
+
+export const operators = [
   {
     operator: '""',
     description: browser.i18n.getMessage('googleOperators_exact'),
@@ -172,3 +174,17 @@ export default [
     insertWhiteSpace: true,
   },
 ];
+
+export function searchOperators(keyword) {
+  const fuse = new Fuse(operators, {
+    findAllMatches: true,
+    threshold: 0,
+    location: 0,
+    distance: 100,
+    maxPatternLength: 32,
+    minMatchCharLength: 1,
+    keys: ['operator'],
+  });
+
+  return fuse.search(keyword);
+}
