@@ -71,59 +71,65 @@ export default class Opelete {
     case 'Enter':
       e.preventDefault();
       e.stopImmediatePropagation();
-
       const focusedResult = this.results[this.focusedResultIndex];
-      this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, focusedResult.operator);
-
-      if ( focusedResult.cursorPosition ) {
-        const cursorPosition = this.inputNode.value.length - focusedResult.operator.length + focusedResult.cursorPosition;
-        this.inputNode.setSelectionRange(cursorPosition, cursorPosition);
-      }
-
-      if ( focusedResult.insertWhiteSpace ) {
-        this.inputNode.value += ' ';
-      }
-
-      this.clearSuggestion();
-      this.disableForceShowSuggestion();
+      this.handleSelect(focusedResult);
       break;
     }
   }
 
+  handleSelect = (focusedResult) => {
+    this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, focusedResult.operator);
+
+    if ( focusedResult.cursorPosition ) {
+      const cursorPosition = this.inputNode.value.length - focusedResult.operator.length + focusedResult.cursorPosition;
+      this.inputNode.setSelectionRange(cursorPosition, cursorPosition);
+    }
+
+    if ( focusedResult.insertWhiteSpace ) {
+      this.inputNode.value += ' ';
+    }
+
+    this.clearSuggestion();
+    this.disableForceShowSuggestion();
+  }
+
   updateSuggestion = () => {
-    const listItems = this.results.map((result, i) => {
+    const suggestion = document.createElement('ul');
+    suggestion.classList.add('opelete-list');
+
+    this.results.forEach((operator, i) => {
       const listItem = document.createElement('li');
       listItem.classList.add('opelete-list-item');
 
       if ( i === this.focusedResultIndex ) {
-        listItem.classList.add('opelete-list-item--selected');
+        listItem.classList.add('opelete-list-item--focused');
       }
 
-      const operator = document.createElement('code');
-      operator.classList.add('opelete-list-item__query');
-      operator.textContent = result.operator;
+      const operatorNode = document.createElement('code');
+      operatorNode.classList.add('opelete-list-item__query');
+      operatorNode.textContent = operator.operator;
 
-      const description = document.createElement('p');
-      description.classList.add('opelete-list-item__description');
-      description.textContent = result.description;
+      const descriptionNode = document.createElement('p');
+      descriptionNode.classList.add('opelete-list-item__description');
+      descriptionNode.textContent = operator.description;
 
-      listItem.appendChild(operator);
-      listItem.appendChild(description);
+      listItem.appendChild(operatorNode);
+      listItem.appendChild(descriptionNode);
 
-      return listItem;
+      // Add item to list wrapper and add click event listener
+      const appendedItem = suggestion.appendChild(listItem);
+      appendedItem.addEventListener('click', () => {
+        this.handleSelect(operator);
+      });
     });
 
-    const list = document.createElement('ul');
-    list.classList.add('opelete-list');
-    listItems.forEach(item => {
-      list.appendChild(item);
-    });
-
+    // Remove inner element
     if ( this.opeleteNode.firstChild ) {
       this.opeleteNode.removeChild(this.opeleteNode.firstChild);
     }
 
-    this.opeleteNode.appendChild(list);
+    // Add suggestion
+    this.opeleteNode.appendChild(suggestion);
   }
 
   clearSuggestion = () => {
