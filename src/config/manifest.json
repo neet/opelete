@@ -435,7 +435,7 @@
         "main.js"
       ],
       "css": [
-        "style.css"
+        "main-style.css"
       ]
     }
   ]

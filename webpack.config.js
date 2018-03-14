@@ -8,9 +8,10 @@ const config = {
   stats: { errorDetails: true },
 
   entry: {
-    main: './src/opelete/main.js',
-    popup: './src/opelete/popup/popup.js',
-    style: './src/styles/main.scss',
+    'main': './src/opelete/main.js',
+    'popup': './src/opelete/popup/popup.js',
+    'main-style': './src/styles/main.scss',
+    'popup-style': './src/styles/popup.scss',
   },
 
   output: {
