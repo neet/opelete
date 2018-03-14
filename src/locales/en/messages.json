@@ -1,0 +1,131 @@
+{
+  "extensionName": {
+    "message": "Opelete",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "A browser extension that autocompletes Google's search operators",
+    "description": "Description of the extension."
+  },
+
+  "googleOperators_exact": {
+    "message": "Search for an exact match"
+  },
+
+  "googleOperators_exclude": {
+    "message": "Exclude specific word from your search"
+  },
+
+  "googleOperators_wildcard": {
+    "message": "Search for wildcards or unknown words"
+  },
+
+  "googleOperators_rangeOfNumbers": {
+    "message": "Search within a range of numbers"
+  },
+
+  "googleOperators_or": {
+    "message": "Combine searches"
+  },
+
+  "googleOperators_group": {
+    "message": "Search Google Groups"
+  },
+
+  "googleOperators_around": {
+    "message": "Search for where the two phrases are within n words of each other"
+  },
+
+  "googleOperators_site": {
+    "message": "Search for a specific site"
+  },
+
+  "googleOperators_excludeSite": {
+    "message": "Exclude specific site from your search"
+  },
+
+  "googleOperators_related": {
+    "message": "Search for related sites of the URL"
+  },
+
+  "googleOperators_info": {
+    "message": "Get details about a site"
+  },
+
+  "googleOperators_cache": {
+    "message": "See Google’s cached version of a site"
+  },
+
+  "googleOperators_link": {
+    "message": "Search for pages that point to that URL"
+  },
+
+  "googleOperators_filetype": {
+    "message": "Search for a specific file extension"
+  },
+
+  "googleOperators_intitle": {
+    "message": "Search for pages contains the term in the title"
+  },
+
+  "googleOperators_allintitle": {
+    "message": "Search for pages contains all the terms in the title"
+  },
+
+  "googleOperators_inurl": {
+    "message": "Search for pages contains the term in the URL"
+  },
+
+  "googleOperators_allinurl": {
+    "message": "Search for pages contains all the terms in the URL"
+  },
+
+  "googleOperators_intext": {
+    "message": "Search for pages contains the term in the text"
+  },
+
+  "googleOperators_allintext": {
+    "message": "Search for pages contains all the terms in the text"
+  },
+
+  "googleOperators_inanchor": {
+    "message": "Search for pages contains the term in the anchor"
+  },
+
+  "googleOperators_allinanchor": {
+    "message": "Search for pages contains all the terms in the anchor"
+  },
+
+  "googleOperators_author": {
+    "message": "Search for pages contains term in the author"
+  },
+
+  "googleOperators_weather": {
+    "message": "Show weather forecast of the place"
+  },
+
+  "googleOperators_location": {
+    "message": "Search for articles from the location"
+  },
+
+  "googleOperators_define": {
+    "message": "Search for definition of the word"
+  },
+
+  "googleOperators_source": {
+    "message": "Search for articles from the news source"
+  },
+
+  "googleOperators_movie": {
+    "message": "Get information about the movie"
+  },
+
+  "googleOperators_@twitter": {
+    "message": "Search Twitter"
+  },
+
+  "googleOperators_@facebook": {
+    "message": "Search Facebook"
+  }
+}

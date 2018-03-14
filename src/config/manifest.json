@@ -1,10 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "Opelete",
+  "name": "__MSG_extensionName__",
+  "description": "__MSG_extensionDescription__",
   "version": "1.0",
   "author": "Neetshin",
   "homepage_url": "https://github.com/neetshin/opelete",
-  "description": "A browser extension that autocompletes Google's search operators",
+  "default_locale": "en",
 
   "applications": {
     "gecko": {

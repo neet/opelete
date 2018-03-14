@@ -73,6 +73,7 @@ const config = {
       { from: './src/images/icon-dark-32.png',  to: './' },
       { from: './src/images/icon-light-16.png', to: './' },
       { from: './src/images/icon-light-32.png', to: './' },
+      { from: './src/locales',                  to: './_locales' },
     ]),
   ],
 
