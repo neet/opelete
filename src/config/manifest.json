@@ -38,6 +38,10 @@
     }]
   },
 
+  "omnibox": {
+    "keyword": "op"
+  },
+
   "permissions": [
     "https://www.google.ad/*",
     "https://www.google.ae/*",
@@ -234,6 +238,10 @@
     "activeTab",
     "storage"
   ],
+
+  "background": {
+    "scripts": ["omnibox.js"]
+  },
 
   "content_scripts": [
     {
