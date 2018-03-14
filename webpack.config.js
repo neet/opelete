@@ -1,14 +1,17 @@
-const path    = require('path');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = {
 
   stats: { errorDetails: true },
 
   entry: {
-    main: './src/opelete/main.js',
-    style: './src/styles/main.scss',
+    'main': './src/opelete/main.js',
+    'popup': './src/opelete/popup/popup.js',
+    'main-style': './src/styles/main.scss',
+    'popup-style': './src/styles/popup.scss',
   },
 
   output: {
@@ -51,6 +54,10 @@ const config = {
   },
 
   plugins: [
+    new CleanWebpackPlugin([
+      'dist',
+    ]),
+
     new ExtractTextPlugin({
       filename: '[name].css',
       allChunks: true,
@@ -58,9 +65,10 @@ const config = {
     }),
 
     new CopyWebpackPlugin([
+      { from: './src/config/manifest.json',     to: './' },
+      { from: './src/opelete/popup/popup.html', to: './' },
       { from: './src/images/icon.png',          to: './' },
       { from: './src/images/icon@2x.png',       to: './' },
-      { from: './src/config/manifest.json',     to: './' },
       { from: './src/images/icon-dark-16.png',  to: './' },
       { from: './src/images/icon-dark-32.png',  to: './' },
       { from: './src/images/icon-light-16.png', to: './' },

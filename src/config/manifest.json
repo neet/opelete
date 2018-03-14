@@ -21,6 +21,7 @@
   "browser_action": {
     "browser_style": true,
     "default_title": "Opelete",
+    "default_popup": "popup.html",
     "default_icon": {
       "16": "icon-light-16.png",
       "32": "icon-light-32.png"
@@ -229,6 +230,7 @@
     "https://www.google.co.zm/*",
     "https://www.google.co.zw/*",
     "https://www.google.cat/*",
+    "activeTab",
     "storage"
   ],
 
@@ -433,7 +435,7 @@
         "main.js"
       ],
       "css": [
-        "style.css"
+        "main-style.css"
       ]
     }
   ]
