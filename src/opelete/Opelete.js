@@ -7,9 +7,9 @@ import {
 
 export default class Opelete {
 
-  results = [];
+  suggestions = [];
 
-  focusedResultIndex = 0;
+  focusedSuggestionIndex = 0;
 
   constructor () {
     this.inputNode      = document.querySelector(INPUT_QUERY);
@@ -29,9 +29,7 @@ export default class Opelete {
   }
 
   handleInput = e => {
-    const { value } = e.target;
-
-    if ( value === '' ) {
+    if ( e.target.value === '' ) {
       this.clearSuggestion();
       this.disableForceShowSuggestion();
       return;
@@ -40,15 +38,15 @@ export default class Opelete {
     // Split search form's value by whitespace
     // and search operators by the last word
     // e.g. "JavaScript site" to search by "site"
-    const keyword = value.match(/([^\s\n]+?)$/)[1];
-    this.results  = searchOperators(keyword);
+    const keyword = e.target.value.match(/([^\s\n]+?)$/)[1];
+    this.suggestions = searchOperators(keyword);
 
     this.updateSuggestion();
     this.enableForceShowSuggestion();
   }
 
   handleKeyDown = e => {
-    if ( this.results.length === 0 ) {
+    if ( this.suggestions.length === 0 ) {
       return;
     }
 
@@ -57,35 +55,35 @@ export default class Opelete {
     case 'ArrowDown':
       e.preventDefault();
       e.stopImmediatePropagation();
-      this.focusedResultIndex = Math.min(this.focusedResultIndex + 1, this.results.length - 1);
+      this.focusedSuggestionIndex = Math.min(this.focusedSuggestionIndex + 1, this.suggestions.length - 1);
       this.updateSuggestion();
       break;
 
     case 'ArrowUp':
       e.preventDefault();
       e.stopImmediatePropagation();
-      this.focusedResultIndex = Math.max(this.focusedResultIndex - 1, 0);
+      this.focusedSuggestionIndex = Math.max(this.focusedSuggestionIndex - 1, 0);
       this.updateSuggestion();
       break;
 
     case 'Enter':
       e.preventDefault();
       e.stopImmediatePropagation();
-      const focusedResult = this.results[this.focusedResultIndex];
-      this.handleSelect(focusedResult);
+      const focusedSuggestion = this.suggestions[this.focusedSuggestionIndex];
+      this.handleSelect(focusedSuggestion);
       break;
     }
   }
 
-  handleSelect = (focusedResult) => {
-    this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, focusedResult.operator);
+  handleSelect = focusedSuggestion => {
+    this.inputNode.value = this.inputNode.value.replace(/([^\s\n]+?)$/, focusedSuggestion.operator);
 
-    if ( focusedResult.cursorPosition ) {
-      const cursorPosition = this.inputNode.value.length - focusedResult.operator.length + focusedResult.cursorPosition;
+    if ( focusedSuggestion.cursorPosition ) {
+      const cursorPosition = this.inputNode.value.length - focusedSuggestion.operator.length + focusedSuggestion.cursorPosition;
       this.inputNode.setSelectionRange(cursorPosition, cursorPosition);
     }
 
-    if ( focusedResult.insertWhiteSpace ) {
+    if ( focusedSuggestion.insertWhiteSpace ) {
       this.inputNode.value += ' ';
     }
 
@@ -97,11 +95,16 @@ export default class Opelete {
     const suggestion = document.createElement('ul');
     suggestion.classList.add('opelete-list');
 
-    this.results.forEach((operator, i) => {
+    this.suggestions.forEach((operator, i) => {
+      if ( operator.hidden ) {
+        return;
+      }
+
       const listItem = document.createElement('li');
       listItem.classList.add('opelete-list-item');
 
-      if ( i === this.focusedResultIndex ) {
+      // If result selected, add --focused class
+      if ( i === this.focusedSuggestionIndex ) {
         listItem.classList.add('opelete-list-item--focused');
       }
 
@@ -133,8 +136,8 @@ export default class Opelete {
   }
 
   clearSuggestion = () => {
-    this.results = [];
-    this.focusedResultIndex = 0;
+    this.suggestions = [];
+    this.focusedSuggestionIndex = 0;
     this.updateSuggestion();
   }
 
