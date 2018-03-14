@@ -1,0 +1,131 @@
+{
+  "extensionName": {
+    "message": "Opelete",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "Googleの検索演算子を自動補完する便利な拡張機能です",
+    "description": "Description of the extension."
+  },
+
+  "googleOperators_exact": {
+    "message": "完全一致する文字列を検索します"
+  },
+
+  "googleOperators_exclude": {
+    "message": "検索結果から文字列を除外します"
+  },
+
+  "googleOperators_wildcard": {
+    "message": "ワイルドカードまたは不明な文字列を検索します"
+  },
+
+  "googleOperators_rangeOfNumbers": {
+    "message": "数値の範囲を指定して検索します"
+  },
+
+  "googleOperators_or": {
+    "message": "検索結果を結合します"
+  },
+
+  "googleOperators_group": {
+    "message": "Googleグループを検索します"
+  },
+
+  "googleOperators_around": {
+    "message": "2つの文字がn文字以内にあるフレーズを検索します"
+  },
+
+  "googleOperators_site": {
+    "message": "指定のURLを検索します"
+  },
+
+  "googleOperators_excludeSite": {
+    "message": "検索結果から指定のURLを除外します"
+  },
+
+  "googleOperators_related": {
+    "message": "指定のURLに関係のあるページを検索します"
+  },
+
+  "googleOperators_info": {
+    "message": "指定のサイトに関する情報を表示します"
+  },
+
+  "googleOperators_cache": {
+    "message": "指定のURLのキャッシュを検索します"
+  },
+
+  "googleOperators_link": {
+    "message": "指定のURLのページを検索します"
+  },
+
+  "googleOperators_filetype": {
+    "message": "指定の拡張子のファイルを検索します"
+  },
+
+  "googleOperators_intitle": {
+    "message": "指定の文字列がタイトルに含まれるページを検索します"
+  },
+
+  "googleOperators_allintitle": {
+    "message": "指定された全ての文字列がタイトルに含まれるページを検索します"
+  },
+
+  "googleOperators_inurl": {
+    "message": "指定の文字列がURLに含まれるページを検索します"
+  },
+
+  "googleOperators_allinurl": {
+    "message": "指定された全ての文字列がURLに含まれるページを検索します"
+  },
+
+  "googleOperators_intext": {
+    "message": "指定の文字列が本文に含まれるページを検索します"
+  },
+
+  "googleOperators_allintext": {
+    "message": "指定された全ての文字列が本文に含まれるページを検索します"
+  },
+
+  "googleOperators_inanchor": {
+    "message": "指定の文字列がアンカーテキストに含まれるページを検索します"
+  },
+
+  "googleOperators_allinanchor": {
+    "message": "指定された全ての文字列がアンカーテキストに含まれるページを検索します"
+  },
+
+  "googleOperators_author": {
+    "message": "指定の著者の記事を検索します"
+  },
+
+  "googleOperators_weather": {
+    "message": "指定の地域の天気予報を検索します"
+  },
+
+  "googleOperators_location": {
+    "message": "指定の地域に関連のある記事を検索します"
+  },
+
+  "googleOperators_define": {
+    "message": "指定の単語の定義を検索します"
+  },
+
+  "googleOperators_source": {
+    "message": "指定のWebサイトがソースのページを検索します"
+  },
+
+  "googleOperators_movie": {
+    "message": "指定の映画の作品情報を検索します"
+  },
+
+  "googleOperators_@twitter": {
+    "message": "Twitterで検索します"
+  },
+
+  "googleOperators_@facebook": {
+    "message": "Facebookで検索します"
+  }
+}

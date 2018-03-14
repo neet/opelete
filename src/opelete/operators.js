@@ -1,174 +1,174 @@
 export default [
   {
-    operator:    '""',
-    description: 'Search for an exact match',
+    operator: '""',
+    description: browser.i18n.getMessage('googleOperators_exact'),
     cursorPosition: 1,
   },
 
   {
-    operator:    '-""',
-    description: 'Exclude specific word from your search',
+    operator: '-""',
+    description: browser.i18n.getMessage('googleOperators_exclude'),
     cursorPosition: 2,
   },
 
   {
-    operator:    '" * "',
-    description: 'Search for wildcards or unknown words',
+    operator: '" * "',
+    description: browser.i18n.getMessage('googleOperators_wildcard'),
     cursorPosition: 1,
   },
 
   {
-    operator:    '...',
-    description: 'Search within a range of numbers',
+    operator: '...',
+    description: browser.i18n.getMessage('googleOperators_rangeOfNumbers'),
     cursorPosition: 0,
   },
 
   {
-    operator:    'OR',
-    description: 'Combine searches',
+    operator: 'OR',
+    description: browser.i18n.getMessage('googleOperators_or'),
     insertWhiteSpace: true,
   },
 
   {
-    operator:    'group:',
-    description: 'Search Google Groups',
+    operator: 'group:',
+    description: browser.i18n.getMessage('googleOperators_group'),
   },
 
   {
-    operator:    'AROUND()',
-    description: 'Search for where the two phrases are within n words of each other',
+    operator: 'AROUND()',
+    description: browser.i18n.getMessage('googleOperators_around'),
     cursorPosition: 7,
   },
 
   {
-    operator:    'site:',
-    description: 'Search for a specific site',
+    operator: 'site:',
+    description: browser.i18n.getMessage('googleOperators_site'),
   },
 
   {
-    operator:    '-site:',
-    description: 'Exclude specific site from your search',
+    operator: '-site:',
+    description: browser.i18n.getMessage('googleOperators_site'),
   },
 
   {
-    operator:    'related:',
-    description: 'Search for related sites of the URL',
+    operator: 'related:',
+    description: browser.i18n.getMessage('googleOperators_related'),
   },
 
   {
-    operator:    'info:',
-    description: 'Get details about a site',
+    operator: 'info:',
+    description: browser.i18n.getMessage('googleOperators_info'),
   },
 
   {
-    operator:    'id:',
-    description: 'Get details about a site',
+    operator: 'id:',
+    description: browser.i18n.getMessage('googleOperators_info'),
   },
 
   {
-    operator:    'cache:',
-    description: 'See Google’s cached version of a site',
+    operator: 'cache:',
+    description: browser.i18n.getMessage('googleOperators_cache'),
   },
 
   {
-    operator:    'link:',
-    description: 'Search for pages that point to that URL',
+    operator: 'link:',
+    description: browser.i18n.getMessage('googleOperators_link'),
   },
 
   {
-    operator:    'filetype:',
-    description: 'Search for a specific file extension',
+    operator: 'filetype:',
+    description: browser.i18n.getMessage('googleOperators_filetype'),
   },
 
   {
-    operator:    'ext:',
-    description: 'Search for a specific file extension',
+    operator: 'ext:',
+    description: browser.i18n.getMessage('googleOperators_filetype'),
   },
 
   {
-    operator:    'intitle:',
-    description: 'Search for pages contains the term in the title',
+    operator: 'intitle:',
+    description: browser.i18n.getMessage('googleOperators_intitle'),
   },
 
   {
-    operator:    'insubject:',
-    description: 'Search for pages contains the term in the title',
+    operator: 'insubject:',
+    description: browser.i18n.getMessage('googleOperators_intitle'),
   },
 
   {
-    operator:    'allintitle:',
-    description: 'Search for pages contains all the terms in the title',
+    operator: 'allintitle:',
+    description: browser.i18n.getMessage('googleOperators_allintitle'),
   },
 
   {
-    operator:    'inurl:',
-    description: 'Search for pages contains the term in the URL',
+    operator: 'inurl:',
+    description: browser.i18n.getMessage('googleOperators_inurl'),
   },
 
   {
-    operator:    'allinurl:',
-    description: 'Search for pages contains all the terms in the URL',
+    operator: 'allinurl:',
+    description: browser.i18n.getMessage('googleOperators_allinurl'),
   },
 
   {
-    operator:    'intext:',
-    description: 'Search for pages contains the term in the text',
+    operator: 'intext:',
+    description: browser.i18n.getMessage('googleOperators_intext'),
   },
 
   {
-    operator:    'allintext:',
-    description: 'Search for pages contains all the terms in the text',
+    operator: 'allintext:',
+    description: browser.i18n.getMessage('googleOperators_allintext'),
   },
 
   {
-    operator:    'inanchor:',
-    description: 'Search for pages contains the term in the anchor',
+    operator: 'inanchor:',
+    description: browser.i18n.getMessage('googleOperators_inanchor'),
   },
 
   {
-    operator:    'allinanchor:',
-    description: 'Search for pages contains all the terms in the anchor',
+    operator: 'allinanchor:',
+    description: browser.i18n.getMessage('googleOperators_allinanchor'),
   },
 
   {
-    operator:    'author:',
-    description: 'Search for pages contains term in the author',
+    operator: 'author:',
+    description: browser.i18n.getMessage('googleOperators_author'),
   },
 
   {
-    operator:    'weather:',
-    description: 'Show weather forecast of the place',
+    operator: 'weather:',
+    description: browser.i18n.getMessage('googleOperators_weather'),
   },
 
   {
-    operator:    'location:',
-    description: 'Search for articles from the location',
+    operator: 'location:',
+    description: browser.i18n.getMessage('googleOperators_location'),
   },
 
   {
-    operator:    'define:',
-    description: 'Search for definition of the word',
+    operator: 'define:',
+    description: browser.i18n.getMessage('googleOperators_define'),
   },
 
   {
-    operator:    'source:',
-    description: 'Search for articles from the news source',
+    operator: 'source:',
+    description: browser.i18n.getMessage('googleOperators_source'),
   },
 
   {
-    operator:    'movie:',
-    description: 'Get information about the movie',
+    operator: 'movie:',
+    description: browser.i18n.getMessage('googleOperators_movie'),
   },
 
   {
-    operator:    '@twitter',
-    description: 'Search Twitter',
+    operator: '@twitter',
+    description: browser.i18n.getMessage('googleOperators_@twitter'),
     insertWhiteSpace: true,
   },
 
   {
-    operator:    '@facebook',
-    description: 'Search Facebook',
+    operator: '@facebook',
+    description: browser.i18n.getMessage('googleOperators_@facebook'),
     insertWhiteSpace: true,
   },
 ];
