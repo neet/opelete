@@ -24,8 +24,8 @@
     "default_title": "Opelete",
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icon-light-16.png",
-      "32": "icon-light-32.png"
+      "16": "icon-dark-16.png",
+      "32": "icon-dark-32.png"
     },
     "theme_icons": [{
       "light": "icon-light-16.png",
