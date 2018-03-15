@@ -13,6 +13,7 @@ const config = {
     'omnibox': './src/opelete/omnibox.js',
     'main-style': './src/styles/main.scss',
     'popup-style': './src/styles/popup.scss',
+    'common-style': './src/styles/common.scss',
   },
 
   output: {

@@ -1,30 +1,8 @@
 import Fuse from 'fuse.js';
 
+const browser = browser || chrome;
+
 export const operators = [
-  {
-    operator: '""',
-    description: browser.i18n.getMessage('googleOperators_exact'),
-    cursorPosition: 1,
-  },
-
-  {
-    operator: '-""',
-    description: browser.i18n.getMessage('googleOperators_exclude'),
-    cursorPosition: 2,
-  },
-
-  {
-    operator: '" * "',
-    description: browser.i18n.getMessage('googleOperators_wildcard'),
-    cursorPosition: 1,
-  },
-
-  {
-    operator: '...',
-    description: browser.i18n.getMessage('googleOperators_rangeOfNumbers'),
-    cursorPosition: 0,
-  },
-
   {
     operator: 'OR',
     description: browser.i18n.getMessage('googleOperators_or'),
@@ -32,14 +10,14 @@ export const operators = [
   },
 
   {
-    operator: 'group:',
-    description: browser.i18n.getMessage('googleOperators_group'),
-  },
-
-  {
     operator: 'AROUND()',
     description: browser.i18n.getMessage('googleOperators_around'),
     cursorPosition: 7,
+  },
+
+  {
+    operator: 'group:',
+    description: browser.i18n.getMessage('googleOperators_group'),
   },
 
   {
@@ -172,6 +150,30 @@ export const operators = [
     operator: '@facebook',
     description: browser.i18n.getMessage('googleOperators_@facebook'),
     insertWhiteSpace: true,
+  },
+
+  {
+    operator: '""',
+    description: browser.i18n.getMessage('googleOperators_exact'),
+    cursorPosition: 1,
+  },
+
+  {
+    operator: '-""',
+    description: browser.i18n.getMessage('googleOperators_exclude'),
+    cursorPosition: 2,
+  },
+
+  {
+    operator: '" * "',
+    description: browser.i18n.getMessage('googleOperators_wildcard'),
+    cursorPosition: 1,
+  },
+
+  {
+    operator: '...',
+    description: browser.i18n.getMessage('googleOperators_rangeOfNumbers'),
+    cursorPosition: 0,
   },
 ];
 

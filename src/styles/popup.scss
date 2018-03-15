@@ -1,10 +1,84 @@
-.opelete-popup {
-  padding: 4px 8px;
+@import "reset";
+@import "base";
+
+.fa, .fas, .far, .fab {
+  margin-right: 0.5em;
 }
 
-.operator-card {
-  padding: 4px;
-  margin-bottom: 4px;
+.opelete-popup {
+  width: 360px;
+  padding: 8px;
+}
+
+.opelete-section:not(:last-child) {
+  margin-bottom: 12px;
+}
+
+.operator-manager {
   border-radius: 4px;
+  overflow: hidden;
   border: 1px solid #dddddd;
+}
+
+.operator-search {
+  display: flex;
+  width: 100%;
+  background-color: #fafbfc;
+  border-bottom: 1px solid #dddddd;
+}
+
+.operator-search__input {
+  flex-grow: 1;
+  padding: 8px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.operator-search__submit {
+  padding: 8px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.operator-list-item {
+  position: relative;
+  padding: 8px 12px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  &--hidden {
+    opacity: 0.8;
+  }
+}
+
+.operator-list-item__hide-button {
+  cursor: pointer;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  color: #dddddd;
+  border-color: transparent;
+  background-color: transparent;
+  transition: 0.3s ease-out;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+.operator-list-item__meta {
+
+}
+
+.operator-card__operator {
+
+}
+
+.operator-card__description {
+
 }

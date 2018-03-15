@@ -1,6 +1,6 @@
 import { searchOperators } from './operators';
 
-const baseURL = 'https://google.com/search';
+const browser = browser || chrome;
 
 browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   if ( text === '' ) {
@@ -17,6 +17,7 @@ browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
 });
 
 browser.omnibox.onInputEntered.addListener((text, disposition) => {
+  const baseURL = 'https://google.com/search';
   const url = !text.startsWith(baseURL) ? `${baseURL}?q=${text}` : text;
 
   switch (disposition) {

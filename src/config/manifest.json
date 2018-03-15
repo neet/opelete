@@ -20,7 +20,6 @@
   },
 
   "browser_action": {
-    "browser_style": true,
     "default_title": "Opelete",
     "default_popup": "popup.html",
     "default_icon": {
@@ -239,7 +238,9 @@
   ],
 
   "background": {
-    "scripts": ["omnibox.js"]
+    "scripts": [
+      "omnibox.js"
+    ]
   },
 
   "content_scripts": [
@@ -443,7 +444,8 @@
         "main.js"
       ],
       "css": [
-        "main-style.css"
+        "main-style.css",
+        "common-style.css"
       ]
     }
   ]

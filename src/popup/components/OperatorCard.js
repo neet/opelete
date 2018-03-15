@@ -14,22 +14,21 @@ export default class OperatorCard extends React.PureComponent {
     const { operator, description, isHidden } = this.props;
 
     return (
-      <section className={`operator-card ${ isHidden ? 'operator-card--hidden' : ''}`}>
-        <Button
-          className='operator-card__hide-button'
-          text='hide'
-        />
+      <div className={`operator-list-item ${ isHidden ? 'operator-list-item--hidden' : ''}`}>
+        <Button className='operator-list-item__hide-button'>
+          <i className='fas fa-eye-slash' aria-hidden='true' />
+        </Button>
 
-        <div className='operator-card__meta'>
-          <h3 className='operator-card__operator'>
-            <code>{ operator }</code>
+        <div className='operator-list-item__meta'>
+          <h3 className='operator-list-item__operator'>
+            { operator }
           </h3>
 
-          <p className='operator-card__description'>
+          <p className='operator-list-item__description'>
             { description }
           </p>
         </div>
-      </section>
+      </div>
     );
   }
 

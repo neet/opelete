@@ -1,23 +1,38 @@
 import React from 'react';
-import OperatorCard from '../components/OperatorCard';
-import operators from '../../opelete/operators';
+import OperatorManager from './OperatorManager';
 
 export default class Popup extends React.PureComponent {
 
   render() {
     return (
       <div className='opelete-popup'>
-        <h1>Preferences</h1>
+        <div className='opelete-section'>
+          <h2>
+            <i className='fas fa-cogs' aria-hidden />
+          General setting
+          </h2>
+          <div>
+            <label>
+              <input type='checkbox' />
+            Show description of operator
+            </label>
+          </div>
 
-        <h2>Manage Operators</h2>
-        {
-          operators.map(({ operator, description }) => (
-            <OperatorCard
-              operator={operator}
-              description={description}
-            />
-          ))
-        }
+          <div>
+            <label>
+            Maximum number of suggestions
+              <input type='number' />
+            </label>
+          </div>
+        </div>
+
+        <div className='opelete-section'>
+          <h2>
+            <i className='fas fa-list' aria-hidden />
+            Manage Operators
+          </h2>
+          <OperatorManager />
+        </div>
       </div>
     );
   }
