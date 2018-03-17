@@ -3,7 +3,7 @@
   "name": "__MSG_extensionName__",
   "short_name": "opelete",
   "description": "__MSG_extensionDescription__",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Neetshin",
   "homepage_url": "https://github.com/neetshin/opelete",
   "default_locale": "en",
