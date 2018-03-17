@@ -127,7 +127,7 @@ export default class Opelete {
       }
 
       const operatorNode = document.createElement('code');
-      operatorNode.classList.add('opelete-list-item__query');
+      operatorNode.classList.add('opelete-list-item__operator');
       operatorNode.textContent = operator.operator;
 
       const descriptionNode = document.createElement('p');
