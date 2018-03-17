@@ -9,6 +9,22 @@
     "description": "Description of the extension."
   },
 
+  "preference_generalSettings": {
+    "message": "General Settings"
+  },
+
+  "preference_generalSettings_hideDescriptions": {
+    "message": "Hide description of operators"
+  },
+
+  "preference_generalSettings_maximunNumberOfSuggestions": {
+    "message": "Maximum number of suggestions"
+  },
+
+  "preference_manageOperators": {
+    "message": "Manage Operators"
+  },
+
   "googleOperators_exact": {
     "message": "Search for an exact match"
   },
@@ -121,11 +137,11 @@
     "message": "Get information about the movie"
   },
 
-  "googleOperators_@twitter": {
+  "googleOperators_twitter": {
     "message": "Search Twitter"
   },
 
-  "googleOperators_@facebook": {
+  "googleOperators_facebook": {
     "message": "Search Facebook"
   }
 }

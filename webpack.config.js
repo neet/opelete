@@ -7,6 +7,8 @@ const config = {
 
   stats: { errorDetails: true },
 
+  devtool: 'source-map',
+
   entry: {
     'main': './src/opelete/main.js',
     'popup': './src/popup/popup.js',

@@ -1,6 +1,5 @@
+import { browser } from './browser';
 import { searchOperators } from './operators';
-
-const browser = browser || chrome;
 
 browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   if ( text === '' ) {

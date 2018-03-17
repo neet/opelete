@@ -1,5 +1,6 @@
 @import "reset";
 @import "base";
+@import 'react-toggle';
 
 .fa, .fas, .far, .fab {
   margin-right: 0.5em;
@@ -10,8 +11,23 @@
   padding: 8px;
 }
 
-.opelete-section:not(:last-child) {
+.preference-category:not(:last-child) {
   margin-bottom: 12px;
+}
+
+.preference-item {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.preference-modifier {
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  .preference-modifier__label {
+    flex-grow: 1;
+  }
 }
 
 .operator-manager {

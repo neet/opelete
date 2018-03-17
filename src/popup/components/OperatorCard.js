@@ -15,7 +15,7 @@ export default class OperatorCard extends React.PureComponent {
 
     return (
       <div className={`operator-list-item ${ isHidden ? 'operator-list-item--hidden' : ''}`}>
-        <Button className='operator-list-item__hide-button'>
+        <Button className='operator-list-item__hide-button' onClick={this.handleToggleVisibility}>
           <i className='fas fa-eye-slash' aria-hidden='true' />
         </Button>
 
