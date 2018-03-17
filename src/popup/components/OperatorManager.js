@@ -1,29 +1,35 @@
 import React from 'react';
-import OperatorCard from '../components/OperatorCard';
+import OperatorCardContainer from '../containers/OperatorCardContainer';
 import { operators, searchOperators } from '../../opelete/operators';
+import { browser } from '../../opelete/browser';
 
 export default class OperatorManager extends React.PureComponent {
 
   state = {
     query: '',
-    list: operators,
+    results: operators,
   }
 
   handleChange = e => {
     const { value } = e.target;
-    const result = value === '' ? operators : searchOperators(value);
 
-    this.setState({ query: value, list: result });
+    if ( value === '' ) {
+      this.setState({ query: value, results: operators });
+    } else {
+      searchOperators(value).then(results => {
+        this.setState({ query: value, results });
+      });
+    }
   }
 
   render() {
-    const { list } = this.state;
+    const { results } = this.state;
 
     return (
       <div className='opelete-section'>
         <h2>
           <i className='fas fa-list' aria-hidden />
-          Manage Operators
+          { browser.i18n.getMessage('preference_manageOperators') }
         </h2>
 
         <div className='operator-manager'>
@@ -32,24 +38,18 @@ export default class OperatorManager extends React.PureComponent {
               className='operator-search__input'
               type='text'
               value={this.state.value}
-              placeholder='Search operators'
+              placeholder={browser.i18n.getMessage('preference_manageOperators__searchOperators')}
               onChange={this.handleChange}
             />
 
             <div className='operator-search__submit'>
-              <i class='fas fa-search' aria-hidden />
+              <i className='fas fa-search' aria-hidden />
             </div>
           </div>
 
           <ul className='operator-list'>
             {
-              list.map(({ operator, description, hidden }) => (
-                <OperatorCard
-                  operator={operator}
-                  description={description}
-                  isHidden={hidden}
-                />
-              ))
+              results.map(result => <OperatorCardContainer key={result.id} operator={result} />)
             }
           </ul>
         </div>

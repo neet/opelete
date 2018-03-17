@@ -26,7 +26,6 @@ export default class Checkbox extends React.PureComponent {
 
         <Toggle
           checked={value}
-          defaultChecked={false}
           icons={false}
           onChange={onChange}
         />

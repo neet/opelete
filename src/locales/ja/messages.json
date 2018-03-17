@@ -25,6 +25,10 @@
     "message": "演算子設定"
   },
 
+  "preference_manageOperators__searchOperators": {
+    "message": "演算子を検索"
+  },
+
   "googleOperators_exact": {
     "message": "完全一致する文字列を検索します"
   },

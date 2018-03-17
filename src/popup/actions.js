@@ -1,5 +1,7 @@
 import { browser } from '../opelete/browser';
 
+// browser.storage.sync.clear();
+
 export const STORAGE_FETCH_REQUEST = 'STORAGE_FETCH_REQUEST';
 export const STORAGE_FETCH_SUCCESS = 'STORAGE_FETCH_SUCCESS';
 export const STORAGE_FETCH_FAIL = 'STORAGE_FETCH_FAIL';
@@ -48,7 +50,9 @@ export function changeMaxSuggestions(value) {
 
     try {
       browser.storage.sync.set({ max_suggestions: value }, () => {
-        dispatch(changeMaxSuggestionsSuccess(value));
+        browser.storage.sync.get('max_suggestions', ({ max_suggestions }) => {
+          dispatch(changeMaxSuggestionsSuccess(max_suggestions));
+        });
       });
     } catch(error) {
       dispatch(changeMaxSuggestionsFail(error));
@@ -87,7 +91,9 @@ export function changeDescriptionVisibility(value) {
 
     try {
       browser.storage.sync.set({ hide_descriptions: value }, () => {
-        dispatch(changeDescriptionVisibilitySuccess(value));
+        browser.storage.sync.get('hide_descriptions', ({ hide_descriptions }) => {
+          dispatch(changeDescriptionVisibilitySuccess(hide_descriptions));
+        });
       });
     } catch(error) {
       dispatch(changeDescriptionVisibilityFail(error));
@@ -116,37 +122,88 @@ export function changeDescriptionVisibilityFail(error) {
   };
 }
 
-// export const OPERATOR_UPDATE_VISIBILITY_REQUEST = 'OPERATOR_UPDATE_VISIBILITY_REQUEST';
-// export const OPERATOR_UPDATE_VISIBILITY_SUCCESS = 'OPERATOR_UPDATE_VISIBILITY_SUCCESS';
-// export const OPERATOR_UPDATE_VISIBILITY_FAIL = 'OPERATOR_UPDATE_VISIBILITY_FAIL';
+export const OPERATOR_ADD_TO_BLACKLIST_REQUEST = 'OPERATOR_ADD_TO_BLACKLIST_REQUEST';
+export const OPERATOR_ADD_TO_BLACKLIST_SUCCESS = 'OPERATOR_ADD_TO_BLACKLIST_SUCCESS';
+export const OPERATOR_ADD_TO_BLACKLIST_FAIL = 'OPERATOR_ADD_TO_BLACKLIST_FAIL';
 
-// export function updateOperatorVisibility(id, isHidden) {
-//   return (dispatch) => {
-//     updateOperatorVisibilityRequest(id, isHidden);
+export function addOperatorToBlacklist(id) {
+  return (dispatch, getState) => {
+    addOperatorToBlacklistRequest(id);
 
-//     browser.storage.sync.set();
-//   };
-// }
+    try {
+      const value = getState().getIn(['storage', 'operator_blacklist']).push(id).toJS();
 
-// export function updateOperatorVisibilityRequest(id, isHidden) {
-//   return {
-//     type: OPERATOR_UPDATE_VISIBILITY_REQUEST,
-//     id,
-//     isHidden,
-//   };
-// }
+      browser.storage.sync.set({ operator_blacklist: value }, () => {
+        browser.storage.sync.get('operator_blacklist', ({ operator_blacklist }) => {
+          dispatch(addOperatorToBlacklistSuccess(operator_blacklist));
+        });
+      });
+    } catch(error) {
+      dispatch(addOperatorToBlacklistFail(error));
+    }
+  };
+}
 
-// export function updateOperatorVisibilitySuccess(id, isHidden) {
-//   return {
-//     type: OPERATOR_UPDATE_VISIBILITY_SUCCESS,
-//     id,
-//     isHidden,
-//   };
-// }
+export function addOperatorToBlacklistRequest(id) {
+  return {
+    type: OPERATOR_ADD_TO_BLACKLIST_REQUEST,
+    id,
+  };
+}
 
-// export function updateOperatorVisibilityFail(error) {
-//   return {
-//     type: OPERATOR_UPDATE_VISIBILITY_FAIL,
-//     error,
-//   };
-// }
+export function addOperatorToBlacklistSuccess(operator_blacklist) {
+  return {
+    type: OPERATOR_ADD_TO_BLACKLIST_SUCCESS,
+    operator_blacklist,
+  };
+}
+
+export function addOperatorToBlacklistFail(error) {
+  return {
+    type: OPERATOR_ADD_TO_BLACKLIST_FAIL,
+    error,
+  };
+}
+
+export const OPERATOR_REMOVE_FROM_BLACKLIST_REQUEST = 'OPERATOR_REMOVE_FROM_BLACKLIST_REQUEST';
+export const OPERATOR_REMOVE_FROM_BLACKLIST_SUCCESS = 'OPERATOR_REMOVE_FROM_BLACKLIST_SUCCESS';
+export const OPERATOR_REMOVE_FROM_BLACKLIST_FAIL = 'OPERATOR_REMOVE_FROM_BLACKLIST_FAIL';
+
+export function removeOperatorFromBlacklist(id) {
+  return (dispatch, getState) => {
+    removeOperatorFromBlacklistRequest(id);
+
+    try {
+      const value = getState().getIn(['storage', 'operator_blacklist']).filterNot(value => value === id).toJS();
+
+      browser.storage.sync.set({ operator_blacklist: value }, () => {
+        browser.storage.sync.get('operator_blacklist', ({ operator_blacklist }) => {
+          dispatch(removeOperatorFromBlacklistSuccess(operator_blacklist));
+        });
+      });
+    } catch(error) {
+      dispatch(removeOperatorFromBlacklistFail(error));
+    }
+  };
+}
+
+export function removeOperatorFromBlacklistRequest(id) {
+  return {
+    type: OPERATOR_REMOVE_FROM_BLACKLIST_REQUEST,
+    id,
+  };
+}
+
+export function removeOperatorFromBlacklistSuccess(operator_blacklist) {
+  return {
+    type: OPERATOR_REMOVE_FROM_BLACKLIST_SUCCESS,
+    operator_blacklist,
+  };
+}
+
+export function removeOperatorFromBlacklistFail(error) {
+  return {
+    type: OPERATOR_REMOVE_FROM_BLACKLIST_FAIL,
+    error,
+  };
+}

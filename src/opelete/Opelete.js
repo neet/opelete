@@ -10,6 +10,8 @@ export default class Opelete {
 
   suggestions = [];
 
+  blacklist = [];
+
   focusedSuggestionIndex = 0;
 
   constructor () {
@@ -23,8 +25,11 @@ export default class Opelete {
 
     // Create Opelete container element with preferences in the sync storage
     // and insert before of original suggestion's wrapepr
-    browser.storage.sync.get('hide_descriptions', items => {
-      const { hide_descriptions } = items;
+    browser.storage.sync.get([
+      'hide_descriptions',
+      'operator_blacklist',
+    ], items => {
+      const { hide_descriptions, operator_blacklist } = items;
 
       const node = document.createElement('div');
       node.classList.add('opelete');
@@ -34,6 +39,7 @@ export default class Opelete {
         node.classList.add('opelete--hide-descriptions');
       }
 
+      this.blacklist = operator_blacklist;
       this.opeleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
     });
   }
@@ -108,7 +114,7 @@ export default class Opelete {
     suggestion.classList.add('opelete-list');
 
     this.suggestions.forEach((operator, i) => {
-      if ( operator.hidden ) {
+      if ( this.blacklist.includes(operator.id) ) {
         return;
       }
 
