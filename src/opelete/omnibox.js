@@ -7,12 +7,12 @@ browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   }
 
   const keyword = text.match(/([^\s\n]+?)$/)[1];
-  const results = searchOperators(keyword);
-
-  addSuggestions(results.map(operator => ({
-    content: operator.operator,
-    description: operator.description,
-  })));
+  searchOperators(keyword).then(items => {
+    addSuggestions(items.map(operator => ({
+      content: operator.operator,
+      description: operator.description,
+    })));
+  });
 });
 
 browser.omnibox.onInputEntered.addListener((text, disposition) => {
