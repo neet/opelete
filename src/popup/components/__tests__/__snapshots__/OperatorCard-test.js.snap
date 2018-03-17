@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OperatorCard renders a checkbox 1`] = `
+<div
+  className="operator-list-item "
+>
+  <button
+    aria-label={undefined}
+    className="button operator-list-item__hide-button"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="fas fa-eye-slash"
+    />
+  </button>
+  <div
+    className="operator-list-item__meta"
+  >
+    <h3
+      className="operator-list-item__operator"
+    >
+      site:
+    </h3>
+    <p
+      className="operator-list-item__description"
+    >
+      Search for a specific site
+    </p>
+  </div>
+</div>
+`;

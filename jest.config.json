@@ -6,8 +6,6 @@
     "<rootDir>/node_modules/"
   ],
   "setupFiles": [
-    "<rootDir>/src/opelete/test_setup.js",
-    "jest-webextension-mock"
   ],
   "collectCoverageFrom": [
     "src/opelete/**/*.js"
