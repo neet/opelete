@@ -2,6 +2,10 @@ import { connect } from 'react-redux';
 import { fetchStorage } from '../actions';
 import Preferences from '../components/Preferences';
 
+const mapStateToProps = state => ({
+  isLoading: state.getIn(['storage', 'is_loading']),
+});
+
 const mapDispatchToProps = dispatch => ({
 
   onMount() {
@@ -11,6 +15,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Preferences);
