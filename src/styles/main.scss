@@ -1,5 +1,11 @@
 .opelete {
   display: block;
+
+  &--hide-descriptions {
+    .opelete-list-item__description {
+      display: none;
+    }
+  }
 }
 
 .opelete-list {

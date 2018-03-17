@@ -1,4 +1,5 @@
 import { searchOperators } from './operators';
+import { browser } from './browser';
 import {
   INPUT_QUERY,
   SUGGESTION_QUERY,
@@ -20,12 +21,21 @@ export default class Opelete {
     this.inputNode.addEventListener('keydown', this.handleKeyDown, true);
     document.addEventListener('keydown', this.handleKeyDown, true);
 
-    // Create Opelete container element
+    // Create Opelete container element with preferences in the sync storage
     // and insert before of original suggestion's wrapepr
-    const node = document.createElement('div');
-    node.setAttribute('class', 'opelete');
-    node.setAttribute('dir', 'ltr');
-    this.opeleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
+    browser.storage.sync.get('hide_descriptions', items => {
+      const { hide_descriptions } = items;
+
+      const node = document.createElement('div');
+      node.classList.add('opelete');
+      node.setAttribute('dir', 'ltr');
+
+      if ( hide_descriptions ) {
+        node.classList.add('opelete--hide-descriptions');
+      }
+
+      this.opeleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
+    });
   }
 
   handleInput = e => {
@@ -39,10 +49,12 @@ export default class Opelete {
     // and search operators by the last word
     // e.g. "JavaScript site" to search by "site"
     const keyword = e.target.value.match(/([^\s\n]+?)$/)[1];
-    this.suggestions = searchOperators(keyword);
 
-    this.updateSuggestion();
-    this.enableForceShowSuggestion();
+    searchOperators(keyword).then(suggestions => {
+      this.suggestions = suggestions;
+      this.updateSuggestion();
+      this.enableForceShowSuggestion();
+    });
   }
 
   handleKeyDown = e => {
@@ -132,7 +144,9 @@ export default class Opelete {
     }
 
     // Add suggestion
-    this.opeleteNode.appendChild(suggestion);
+    if ( this.opeleteNode ) {
+      this.opeleteNode.appendChild(suggestion);
+    }
   }
 
   clearSuggestion = () => {

@@ -13,6 +13,6 @@
 ## Storage
 |key|type|description|nullable|
 |:--|:---|:----------|:-------|
-|`hide_description`|`boolean`|Whether the description of operator won't be shown in the right of suggestion, `false` by default|`true`|
+|`hide_descriptions`|`boolean`|Whether the description of operators won't be shown in the right of suggestion, `false` by default|`true`|
 |`max_suggestions`|`number`|Maximum number of suggestions, `null` specified, considered as infinity|`true`|
 |`operators`|`operator[]`|User-modified `operator` list|`false`|

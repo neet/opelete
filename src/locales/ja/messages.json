@@ -9,6 +9,22 @@
     "description": "Description of the extension."
   },
 
+  "preference_generalSettings": {
+    "message": "一般設定"
+  },
+
+  "preference_generalSettings_hideDescriptions": {
+    "message": "演算子の説明を隠す"
+  },
+
+  "preference_generalSettings_maximunNumberOfSuggestions": {
+    "message": "サジェストを表示する最大値"
+  },
+
+  "preference_manageOperators": {
+    "message": "演算子設定"
+  },
+
   "googleOperators_exact": {
     "message": "完全一致する文字列を検索します"
   },
@@ -121,11 +137,11 @@
     "message": "指定の映画の作品情報を検索します"
   },
 
-  "googleOperators_@twitter": {
+  "googleOperators_twitter": {
     "message": "Twitterで検索します"
   },
 
-  "googleOperators_@facebook": {
+  "googleOperators_facebook": {
     "message": "Facebookで検索します"
   }
 }
