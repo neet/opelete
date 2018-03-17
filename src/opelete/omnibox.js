@@ -7,6 +7,7 @@ browser.omnibox.onInputChanged.addListener((text, addSuggestions) => {
   }
 
   const keyword = text.match(/([^\s\n]+?)$/)[1];
+
   searchOperators(keyword).then(items => {
     addSuggestions(items.map(operator => ({
       content: operator.operator,
