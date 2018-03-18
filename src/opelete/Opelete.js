@@ -39,7 +39,10 @@ export default class Opelete {
         node.classList.add('opelete--hide-descriptions');
       }
 
-      this.blacklist = operator_blacklist;
+      if ( operator_blacklist ) {
+        this.blacklist = operator_blacklist;
+      }
+
       this.opeleteNode = this.suggestionNode.insertBefore(node, this.suggestionNode.firstChild);
     });
   }
@@ -54,13 +57,15 @@ export default class Opelete {
     // Split search form's value by whitespace
     // and search operators by the last word
     // e.g. "JavaScript site" to search by "site"
-    const keyword = e.target.value.match(/([^\s\n]+?)$/)[1];
+    const matches = e.target.value.match(/([^\s\n]+?)$/);
 
-    searchOperators(keyword).then(suggestions => {
-      this.suggestions = suggestions;
-      this.updateSuggestion();
-      this.enableForceShowSuggestion();
-    });
+    if ( matches !== null && matches[1] ) {
+      searchOperators(matches[1]).then(suggestions => {
+        this.suggestions = suggestions;
+        this.updateSuggestion();
+        this.enableForceShowSuggestion();
+      });
+    }
   }
 
   handleKeyDown = e => {
@@ -114,7 +119,7 @@ export default class Opelete {
     suggestion.classList.add('opelete-list');
 
     this.suggestions.forEach((operator, i) => {
-      if ( this.blacklist.includes(operator.id) ) {
+      if ( this.blacklist.indexOf(operator.id) !== -1 ) {
         return;
       }
 
