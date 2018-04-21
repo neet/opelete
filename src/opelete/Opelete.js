@@ -48,7 +48,7 @@ export default class Opelete {
   }
 
   handleInput = e => {
-    if ( e.target.value === '' ) {
+    if ( e.target.value === '' || /\s$/.test(e.target.value) ) {
       this.clearSuggestion();
       this.disableForceShowSuggestion();
       return;
@@ -94,6 +94,11 @@ export default class Opelete {
       e.stopImmediatePropagation();
       const focusedSuggestion = this.suggestions[this.focusedSuggestionIndex];
       this.handleSelect(focusedSuggestion);
+      break;
+
+    case 'Escape':
+      this.clearSuggestion();
+      this.disableForceShowSuggestion();
       break;
     }
   }
