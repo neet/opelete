@@ -15,7 +15,12 @@ const config = {
     'omnibox': './src/opelete/omnibox.js',
     'main-style': './src/styles/main.scss',
     'popup-style': './src/styles/popup.scss',
-    'common-style': './src/styles/common.scss',
+    'fontawesome': [
+      '@fortawesome/fontawesome',
+      '@fortawesome/fontawesome-free-brands',
+      '@fortawesome/fontawesome-free-regular',
+      '@fortawesome/fontawesome-free-solid',
+    ],
   },
 
   output: {
@@ -33,11 +38,7 @@ const config = {
         use: 'babel-loader',
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /\.(scss|sass)$/,
+        test: /\.(css|scss|sass)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
