@@ -1,5 +1,5 @@
 # Opelete
-[![Build](https://travis-ci.org/neetshin/opelete.svg?branch=master)](https://travis-ci.org/neetshin/opelete)
+[![Build](https://travis-ci.org/neet/opelete.svg?branch=master)](https://travis-ci.org/neet/opelete)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3dd51c205d3aa4c00fb9/maintainability)](https://codeclimate.com/github/neetshin/opelete/maintainability)
 
 A browser extension that autocompletes Google's search operators
