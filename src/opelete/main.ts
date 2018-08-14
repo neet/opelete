@@ -1,6 +1,6 @@
 import { INPUT_QUERY, SUGGESTION_QUERY } from './constants';
-import Opelete from './Opelete';
-import ready from './ready';
+import { Opelete } from './Opelete';
+import { ready } from './ready';
 
 (() => {
   ready(() => {

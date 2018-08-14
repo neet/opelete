@@ -8,7 +8,7 @@ export interface Props {
   onClick?: () => void;
 }
 
-export default class Button extends React.PureComponent<Props> {
+export class Button extends React.PureComponent<Props> {
 
   private handleClick = () => {
     if ( this.props.href ) {

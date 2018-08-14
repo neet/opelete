@@ -1,13 +1,13 @@
 import React from 'react';
-import GeneralSettings from './GeneralSettings';
-import OperatorManager from './OperatorManager';
+import { GeneralSettings } from './GeneralSettings';
+import { OperatorManager } from './OperatorManager';
 
 export interface Props {
   isLoading: boolean;
   onMount: () => void;
 }
 
-export default class Preferences extends React.PureComponent<Props> {
+export class Preferences extends React.PureComponent<Props> {
 
   public componentDidMount () {
     this.props.onMount();

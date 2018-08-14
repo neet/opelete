@@ -8,7 +8,7 @@ export interface Props {
   onChange: () => void;
 }
 
-export default class Checkbox extends React.PureComponent<Props> {
+export class Checkbox extends React.PureComponent<Props> {
 
   public static defaultProps = {
     value: false,

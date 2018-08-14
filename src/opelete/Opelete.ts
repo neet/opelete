@@ -2,7 +2,7 @@ import { browser } from 'webextension-polyfill-ts';
 import { SUGGESTION_CONTAINER_QUERY } from './constants';
 import { Operator, searchOperators } from './operators';
 
-export default class Opelete {
+export class Opelete {
 
   /** Container of root node */
   private opeleteNode: HTMLDivElement|null = null;

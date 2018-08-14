@@ -3,7 +3,7 @@ import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { browser } from 'webextension-polyfill-ts';
 import { Operator, operators, searchOperators } from '../../opelete/operators';
-import OperatorCard from './OperatorCard';
+import { OperatorCard } from './OperatorCard';
 
 export interface State {
   value: string;
@@ -11,7 +11,7 @@ export interface State {
   results: Operator[];
 }
 
-export default class OperatorManager extends React.PureComponent<{}, State> {
+export class OperatorManager extends React.PureComponent<{}, State> {
 
   public state = {
     value: '',

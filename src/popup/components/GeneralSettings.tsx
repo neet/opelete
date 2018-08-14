@@ -2,7 +2,7 @@ import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { browser } from 'webextension-polyfill-ts';
-import Checkbox from './Checkbox';
+import { Checkbox } from './Checkbox';
 
 export interface Props {
   isHiddenDescriptions?: boolean;
@@ -11,7 +11,7 @@ export interface Props {
   onChangeMaxSuggestions: (value: number) => void;
 }
 
-export default class GeneralSettings extends React.PureComponent {
+export class GeneralSettings extends React.PureComponent {
 
   public handleChangeDescriptionVisibility = (e) => {
     const { checked } = e.target;

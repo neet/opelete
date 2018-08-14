@@ -24,6 +24,8 @@
     "@fortawesome/free-regular-svg-icons": "^5.2.0",
     "@fortawesome/free-solid-svg-icons": "^5.2.0",
     "@fortawesome/react-fontawesome": "^0.1.2",
+    "@types/react": "^16.4.10",
+    "@types/react-dom": "^16.0.7",
     "@types/react-toggle": "^4.0.2",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",

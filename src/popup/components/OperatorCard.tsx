@@ -2,7 +2,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Operator } from '../../opelete/operators';
-import Button from './Button';
+import { Button } from './Button';
 
 interface Props {
   operator: Operator;
@@ -11,7 +11,7 @@ interface Props {
   onRemoveFromBlacklist: () => void;
 }
 
-export default class OperatorCard extends React.PureComponent<Props> {
+export class OperatorCard extends React.PureComponent<Props> {
 
   public handleAddToBlacklist = () => {
     this.props.onAddToBlacklist();
