@@ -27,14 +27,10 @@
     "removeComments": true,
     "pretty": true
   },
-  "typeRoots": [
-    "node_modules/@types",
-    "node_modules/web-ext-types"
-  ],
   "include": [
     "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "/node_modules/"
   ]
 }
