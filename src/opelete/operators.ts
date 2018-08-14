@@ -1,7 +1,20 @@
-import { browser } from './browser';
 import Fuse from 'fuse.js';
+import { browser } from 'webextension-polyfill-ts';
 
-export const operators = [
+export interface Operator {
+  /** ID for the operator */
+  id: string;
+  /** String of the operator */
+  operator: string;
+  /** Description for the operator which will be display on the right */
+  description: string;
+  /** Whether insert whitespace after enter pushed */
+  insertWhiteSpace?: boolean;
+  /** Number of cursors to move when pushed, count from very right of the operator */
+  cursorPosition?: number;
+}
+
+export const operators: Operator[] = [
   {
     id: 'or',
     operator: 'OR',
@@ -209,27 +222,25 @@ export const operators = [
   },
 ];
 
-export function searchOperators(keyword) {
+export function searchOperators (keyword: string): Promise<Operator[]> {
   const fuse = new Fuse(operators, {
     threshold: 0,
     location: 0,
     distance: 100,
+    keys: ['operator'],
     findAllMatches: true,
     maxPatternLength: 32,
     minMatchCharLength: 1,
-    keys: ['operator'],
   });
 
-  return new Promise((resolve) => {
-    browser.storage.sync.get('max_suggestions', items => {
-      const { max_suggestions } = items;
-      const result = fuse.search(keyword);
+  return new Promise(async (resolve, reject) => {
+    const { max_suggestions } = await browser.storage.sync.get('max_suggestions');
+    const result = fuse.search<Operator>(keyword);
 
-      if ( max_suggestions > 0 ) {
-        resolve(result.slice(0, max_suggestions));
-      }
+    if (!result) {
+      reject();
+    }
 
-      resolve(result);
-    });
+    resolve(max_suggestions < 0 ? result : result.slice(0, max_suggestions));
   });
 }

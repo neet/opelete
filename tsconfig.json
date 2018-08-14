@@ -7,7 +7,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "lib": [
-      "es6",
+      "es7",
       "dom"
     ],
     "moduleResolution": "node",
@@ -27,6 +27,10 @@
     "removeComments": true,
     "pretty": true
   },
+  "typeRoots": [
+    "node_modules/@types",
+    "node_modules/web-ext-types"
+  ],
   "include": [
     "src/**/*"
   ],
