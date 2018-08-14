@@ -1,36 +1,20 @@
 {
+  "passPerPreset": true,
   "presets": [
+    "@babel/preset-typescript",
     [
-      "env",
+      "@babel/preset-env",
       {
-        "loose": true,
-        "modules": false,
-        "targets": {
-          "browsers": ["last 2 versions"]
-        }
+        "targets": { "electron": "2.0" },
+        "useBuiltIns": "usage"
       }
     ],
-    "stage-2",
-    "react"
-  ],
-
-  "plugins": [
-    "transform-react-remove-prop-types",
-    "transform-decorators-legacy",
     [
-      "transform-runtime",
+      "@babel/preset-stage-2",
       {
-        "polyfill": false,
-        "regenerator": true
+        "decoratorsLegacy": true
       }
-    ]
-  ],
-
-  "env": {
-    "test": {
-      "plugins": [
-        "transform-es2015-modules-commonjs"
-      ]
-    }
-  }
+    ],
+    "@babel/preset-react"
+  ]
 }
