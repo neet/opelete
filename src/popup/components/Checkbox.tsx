@@ -1,27 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Toggle from 'react-toggle';
 
-export default class Checkbox extends React.PureComponent {
+export interface Props {
+  text?: string;
+  value?: boolean;
+  children?: React.ReactNode;
+  onChange: () => void;
+}
 
-  static propTypes = {
-    text: PropTypes.string,
-    value: PropTypes.bool,
-    children: PropTypes.node,
-    onChange: PropTypes.func,
-  }
+export default class Checkbox extends React.PureComponent<Props> {
 
-  static defaultProps = {
+  public static defaultProps = {
     value: false,
-  }
+  };
 
-  render() {
+  public render () {
     const { text, value, children, onChange } = this.props;
 
     return (
       <label className='preference-modifier' >
         <div className='preference-modifier__label'>
-          { children || text }
+          {children || text || ''}
         </div>
 
         <Toggle

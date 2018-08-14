@@ -1,35 +1,43 @@
+import { faList, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import OperatorCardContainer from '../containers/OperatorCardContainer';
-import { operators, searchOperators } from '../../opelete/operators';
-import { browser } from '../../opelete/browser';
+import { browser } from 'webextension-polyfill-ts';
+import { Operator, operators, searchOperators } from '../../opelete/operators';
+import OperatorCard from './OperatorCard';
 
-export default class OperatorManager extends React.PureComponent {
+export interface State {
+  value: string;
+  query: string;
+  results: Operator[];
+}
 
-  state = {
+export default class OperatorManager extends React.PureComponent<{}, State> {
+
+  public state = {
+    value: '',
     query: '',
     results: operators,
-  }
+  };
 
-  handleChange = e => {
+  public handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
 
     if ( value === '' ) {
       this.setState({ query: value, results: operators });
     } else {
-      searchOperators(value).then(results => {
-        this.setState({ query: value, results });
-      });
+      const results = await searchOperators(value);
+      this.setState({ query: value, results });
     }
   }
 
-  render() {
+  public render () {
     const { results } = this.state;
 
     return (
       <div className='opelete-section'>
         <h2>
-          <i className='fas fa-list' aria-hidden />
-          { browser.i18n.getMessage('preference_manageOperators') }
+          <Fa icon={faList} />
+          {browser.i18n.getMessage('preference_manageOperators')}
         </h2>
 
         <div className='operator-manager'>
@@ -43,14 +51,12 @@ export default class OperatorManager extends React.PureComponent {
             />
 
             <div className='operator-search__submit'>
-              <i className='fas fa-search' aria-hidden />
+              <Fa icon={faSearch} />
             </div>
           </div>
 
           <ul className='operator-list'>
-            {
-              results.map(result => <OperatorCardContainer key={result.id} operator={result} />)
-            }
+            {results.map((result) => <OperatorCard key={result.id} operator={result} />)}
           </ul>
         </div>
       </div>

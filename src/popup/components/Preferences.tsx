@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import GeneralSettingsContainer from '../containers/GeneralSettingsContainer';
+import GeneralSettings from './GeneralSettings';
 import OperatorManager from './OperatorManager';
 
-export default class Preferences extends React.PureComponent {
+export interface Props {
+  isLoading: boolean;
+  onMount: () => void;
+}
 
-  public static propTypes = {
-    isLoading: PropTypes.bool.isRequired,
-    onMount: PropTypes.func.isRequired,
-  };
+export default class Preferences extends React.PureComponent<Props> {
 
   public componentDidMount () {
     this.props.onMount();
@@ -18,15 +17,15 @@ export default class Preferences extends React.PureComponent {
     const { isLoading } = this.props;
 
     if ( isLoading ) {
-      return null;
+      return;
     }
 
     return (
-      className as div = 'preferences' >
-        /> as GeneralSettingsContainer
-        < OperatorManager / >
-      /div>; as;
-    )
+      <div className='preferences'>
+        <GeneralSettings />
+        <OperatorManager />
+      </div>
+    );
   }
 
 }

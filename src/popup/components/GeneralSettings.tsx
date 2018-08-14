@@ -1,28 +1,29 @@
+import { faCogs } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { browser } from 'webextension-polyfill-ts';
 import Checkbox from './Checkbox';
-import { browser } from '../../opelete/browser';
+
+export interface Props {
+  isHiddenDescriptions?: boolean;
+  maxSuggestions?: number;
+  onChangeDescriptionVisibility: (value: boolean) => void;
+  onChangeMaxSuggestions: (value: number) => void;
+}
 
 export default class GeneralSettings extends React.PureComponent {
 
-  static propTypes = {
-    isHiddenDescriptions: PropTypes.bool,
-    maxSuggestions: PropTypes.number,
-    onChangeDescriptionVisibility: PropTypes.func.isRequired,
-    onChangeMaxSuggestions: PropTypes.func.isRequired,
-  }
-
-  handleChangeDescriptionVisibility = e => {
+  public handleChangeDescriptionVisibility = (e) => {
     const { checked } = e.target;
 
     this.props.onChangeDescriptionVisibility(checked);
   }
 
-  handleChangeMaxSuggestions = e => {
+  public handleChangeMaxSuggestions = (e) => {
     let { value } = e.target;
 
     if ( typeof value !== 'number' ) {
-      value = parseInt(value);
+      value = Number(value);
     }
 
     if ( value < 0 ) {
@@ -32,14 +33,14 @@ export default class GeneralSettings extends React.PureComponent {
     this.props.onChangeMaxSuggestions(value);
   }
 
-  render() {
+  public render () {
     const { isHiddenDescriptions, maxSuggestions } = this.props;
 
     return (
       <div className='preference-category'>
         <h2 className='preference-title'>
-          <i className='fas fa-cogs' aria-hidden />
-          { browser.i18n.getMessage('preference_generalSettings') }
+          <Fa icon={faCogs} />
+          {browser.i18n.getMessage('preference_generalSettings')}
         </h2>
 
         <div className='preference-item'>
@@ -53,12 +54,15 @@ export default class GeneralSettings extends React.PureComponent {
         <div className='preference-item'>
           <label className='preference-modifier'>
             <span className='preference-modifier__label'>
-              { browser.i18n.getMessage('preference_generalSettings_maximunNumberOfSuggestions') }
+              {browser.i18n.getMessage('preference_generalSettings_maximunNumberOfSuggestions')}
             </span>
 
             <input
               type='number'
               value={maxSuggestions}
+              aria-valuemin={0}
+              aria-valuemax={9999}
+              aria-valuenow={maxSuggestions}
               onChange={this.handleChangeMaxSuggestions}
             />
           </label>

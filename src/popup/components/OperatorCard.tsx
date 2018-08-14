@@ -1,40 +1,42 @@
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Operator } from '../../opelete/operators';
 import Button from './Button';
 
-export default class OperatorCard extends React.PureComponent {
+interface Props {
+  operator: Operator;
+  isHidden: boolean;
+  onAddToBlacklist: () => void;
+  onRemoveFromBlacklist: () => void;
+}
 
-  static propTypes = {
-    operator: PropTypes.object.isRequired,
-    isHidden: PropTypes.bool.isRequired,
-    onAddToBlacklist: PropTypes.func.isRequired,
-    onRemoveFromBlacklist: PropTypes.func.isRequired,
-  }
+export default class OperatorCard extends React.PureComponent<Props> {
 
-  handleAddToBlacklist = () => {
+  public handleAddToBlacklist = () => {
     this.props.onAddToBlacklist();
   }
 
-  handleRemoveFromBlacklist = () => {
+  public handleRemoveFromBlacklist = () => {
     this.props.onRemoveFromBlacklist();
   }
 
-  render() {
+  public render () {
     const { operator, isHidden } = this.props;
 
     return (
-      <div className={`operator-list-item ${ isHidden ? 'operator-list-item--hidden' : ''}`}>
+      <div className={`operator-list-item ${isHidden ? 'operator-list-item--hidden' : ''}`}>
         <Button className='operator-list-item__hide-button' onClick={isHidden ? this.handleRemoveFromBlacklist : this.handleAddToBlacklist}>
-          <i className='fas fa-eye-slash' aria-hidden='true' />
+          <Fa icon={isHidden ? faEyeSlash : faEye} />
         </Button>
 
         <div className='operator-list-item__meta'>
           <h3 className='operator-list-item__operator'>
-            { operator.operator }
+            {operator.operator}
           </h3>
 
           <p className='operator-list-item__description'>
-            { operator.description }
+            {operator.description}
           </p>
         </div>
       </div>
