@@ -1,6 +1,6 @@
 import { faList, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import * as React from 'react';
 import { browser } from 'webextension-polyfill-ts';
 import { Operator, operators, searchOperators } from '../../opelete/operators';
 import { OperatorCard } from './OperatorCard';

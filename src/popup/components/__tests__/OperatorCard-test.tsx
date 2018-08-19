@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import OperatorCard from '../OperatorCard';
 import renderer from 'react-test-renderer';
 

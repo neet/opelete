@@ -1,32 +1,28 @@
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import * as React from 'react';
 import { Operator } from '../../opelete/operators';
+import { stores } from '../stores';
 import { Button } from './Button';
 
 interface Props {
+  storage?: typeof stores.storage;
   operator: Operator;
-  isHidden: boolean;
-  onAddToBlacklist: () => void;
-  onRemoveFromBlacklist: () => void;
 }
 
 export class OperatorCard extends React.PureComponent<Props> {
 
-  public handleAddToBlacklist = () => {
-    this.props.onAddToBlacklist();
-  }
-
-  public handleRemoveFromBlacklist = () => {
-    this.props.onRemoveFromBlacklist();
+  private handleClick = () => {
+    this.props.storage!.toggleDescriptions(!(this.props.storage!.hideDescriptions));
   }
 
   public render () {
-    const { operator, isHidden } = this.props;
+    const { storage, operator } = this.props;
+    const isHidden = storage!.hideDescriptions;
 
     return (
       <div className={`operator-list-item ${isHidden ? 'operator-list-item--hidden' : ''}`}>
-        <Button className='operator-list-item__hide-button' onClick={isHidden ? this.handleRemoveFromBlacklist : this.handleAddToBlacklist}>
+        <Button className='operator-list-item__hide-button' onClick={this.handleClick}>
           <Fa icon={isHidden ? faEyeSlash : faEye} />
         </Button>
 

@@ -1,40 +1,39 @@
 import { faCogs } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import React from 'react';
+import { inject, observer } from 'mobx-react';
+import * as React from 'react';
 import { browser } from 'webextension-polyfill-ts';
+import { operators } from '../../opelete/operators';
+import { stores } from '../stores';
 import { Checkbox } from './Checkbox';
 
-export interface Props {
-  isHiddenDescriptions?: boolean;
-  maxSuggestions?: number;
-  onChangeDescriptionVisibility: (value: boolean) => void;
-  onChangeMaxSuggestions: (value: number) => void;
+interface Props {
+  storage?: typeof stores.storage;
 }
 
-export class GeneralSettings extends React.PureComponent {
+@inject('storage')
+@observer
+export class GeneralSettings extends React.PureComponent<Props> {
 
-  public handleChangeDescriptionVisibility = (e) => {
+  public handleToggleDescriptions = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
 
-    this.props.onChangeDescriptionVisibility(checked);
+    this.props.storage!.toggleDescriptions(checked);
   }
 
-  public handleChangeMaxSuggestions = (e) => {
-    let { value } = e.target;
+  public handleChangeMaxSuggestions = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value }   = e.target;
+    const suggestions = Number(value);
 
-    if ( typeof value !== 'number' ) {
-      value = Number(value);
-    }
-
-    if ( value < 0 ) {
+    if ( suggestions < 0 ) {
       return;
     }
 
-    this.props.onChangeMaxSuggestions(value);
+    this.props.storage!.changeMaxSuggestions(suggestions);
   }
 
   public render () {
-    const { isHiddenDescriptions, maxSuggestions } = this.props;
+    const { storage } = this.props;
 
     return (
       <div className='preference-category'>
@@ -46,8 +45,8 @@ export class GeneralSettings extends React.PureComponent {
         <div className='preference-item'>
           <Checkbox
             text={browser.i18n.getMessage('preference_generalSettings_hideDescriptions')}
-            value={isHiddenDescriptions}
-            onChange={this.handleChangeDescriptionVisibility}
+            checked={storage!.hideDescriptions || false}
+            onChange={this.handleToggleDescriptions}
           />
         </div>
 
@@ -59,10 +58,10 @@ export class GeneralSettings extends React.PureComponent {
 
             <input
               type='number'
-              value={maxSuggestions}
+              value={storage!.maxSuggestions || 0}
               aria-valuemin={0}
-              aria-valuemax={9999}
-              aria-valuenow={maxSuggestions}
+              aria-valuemax={operators.length}
+              aria-valuenow={storage!.maxSuggestions || 0}
               onChange={this.handleChangeMaxSuggestions}
             />
           </label>
@@ -70,5 +69,4 @@ export class GeneralSettings extends React.PureComponent {
       </div>
     );
   }
-
 }
