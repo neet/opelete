@@ -10,17 +10,11 @@ const config = {
   devtool: 'source-map',
 
   entry: {
-    'main': './src/opelete/main.js',
-    'popup': './src/popup/popup.js',
-    'omnibox': './src/opelete/omnibox.js',
+    'main': './src/opelete/main.ts',
+    'popup': './src/popup/popup.tsx',
+    'omnibox': './src/opelete/omnibox.ts',
     'main-style': './src/styles/main.scss',
     'popup-style': './src/styles/popup.scss',
-    'fontawesome': [
-      '@fortawesome/fontawesome',
-      '@fortawesome/fontawesome-free-brands',
-      '@fortawesome/fontawesome-free-regular',
-      '@fortawesome/fontawesome-free-solid',
-    ],
   },
 
   output: {
@@ -33,7 +27,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
@@ -55,7 +49,7 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.tsx'],
   },
 
   plugins: [

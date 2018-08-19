@@ -1,5 +1,4 @@
 {
-  "passPerPreset": true,
   "presets": [
     "@babel/preset-typescript",
     [

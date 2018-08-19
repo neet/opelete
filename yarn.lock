@@ -1460,6 +1460,15 @@ babel-jest@^23.4.2:
     babel-plugin-istanbul "^4.1.6"
     babel-preset-jest "^23.2.0"
 
+babel-loader@8.0.0-beta.4:
+  version "8.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/babel-loader/-/babel-loader-8.0.0-beta.4.tgz#c3fab00696c385c70c04dbe486391f0eb996f345"
+  dependencies:
+    find-cache-dir "^1.0.0"
+    loader-utils "^1.0.2"
+    mkdirp "^0.5.1"
+    util.promisify "^1.0.0"
+
 babel-messages@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-messages/-/babel-messages-6.23.0.tgz#f3cdf4703858035b2a2951c6ec5edf6c62f2630e"
@@ -4051,6 +4060,10 @@ hoek@4.x.x:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
 
+hoist-non-react-statics@^2.5.0:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -5692,6 +5705,17 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
+mobx-react@^5.2.5:
+  version "5.2.5"
+  resolved "https://registry.yarnpkg.com/mobx-react/-/mobx-react-5.2.5.tgz#fc44ac17e1798f6b590f064b831d8a1d89850ef0"
+  dependencies:
+    hoist-non-react-statics "^2.5.0"
+    react-lifecycles-compat "^3.0.2"
+
+mobx@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/mobx/-/mobx-5.0.3.tgz#53b97f2a0f9b0dd7774c96249f81bf2d513d8e1c"
+
 moment@^2.10.6:
   version "2.21.0"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
@@ -6825,6 +6849,10 @@ react-dom@^16.4.2:
 react-is@^16.4.2:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.2.tgz#84891b56c2b6d9efdee577cc83501dfc5ecead88"
+
+react-lifecycles-compat@^3.0.2:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
 react-reconciler@^0.7.0:
   version "0.7.0"
