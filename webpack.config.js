@@ -49,7 +49,7 @@ const config = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx'],
+    extensions: ['.js', 'jsx', '.ts', '.tsx'],
   },
 
   plugins: [
