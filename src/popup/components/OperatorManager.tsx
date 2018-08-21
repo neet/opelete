@@ -21,13 +21,15 @@ export class OperatorManager extends React.PureComponent<{}, State> {
 
   public handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
+    this.setState({ value });
 
-    if ( value === '' ) {
-      this.setState({ query: value, results: operators });
-    } else {
-      const results = await searchOperators(value);
-      this.setState({ query: value, results });
+    if ( !value ) {
+      this.setState({ query: '', results: operators });
+      return;
     }
+
+    const results = await searchOperators(value);
+    this.setState({ query: value.trim(), results });
   }
 
   public render () {

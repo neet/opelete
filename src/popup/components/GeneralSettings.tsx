@@ -13,12 +13,12 @@ interface Props {
 
 @inject('storage')
 @observer
-export class GeneralSettings extends React.PureComponent<Props> {
+export class GeneralSettings extends React.Component<Props> {
 
-  public handleToggleDescriptions = (e: React.ChangeEvent<HTMLInputElement>) => {
+  public handleToggleDescriptionVisibility = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { checked } = e.target;
 
-    this.props.storage!.toggleDescriptions(checked);
+    this.props.storage!.toggleDescriptionVisibility(checked);
   }
 
   public handleChangeMaxSuggestions = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +46,7 @@ export class GeneralSettings extends React.PureComponent<Props> {
           <Checkbox
             text={browser.i18n.getMessage('preference_generalSettings_hideDescriptions')}
             checked={storage!.hideDescriptions || false}
-            onChange={this.handleToggleDescriptions}
+            onChange={this.handleToggleDescriptionVisibility}
           />
         </div>
 
@@ -58,7 +58,7 @@ export class GeneralSettings extends React.PureComponent<Props> {
 
             <input
               type='number'
-              value={storage!.maxSuggestions || 0}
+              value={storage!.maxSuggestions || ''}
               aria-valuemin={0}
               aria-valuemax={operators.length}
               aria-valuenow={storage!.maxSuggestions || 0}
