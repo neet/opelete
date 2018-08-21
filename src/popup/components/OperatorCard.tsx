@@ -22,7 +22,7 @@ export class OperatorCard extends React.PureComponent<Props> {
 
     return (
       <div className={`operator-list-item ${isHidden ? 'operator-list-item--hidden' : ''}`}>
-        <Button className='operator-list-item__hide-button' onClick={this.handleClick}>
+          text={browser.i18n.getMessage('preference_manageOperators__excludeOperator')}
           <Fa icon={isHidden ? faEyeSlash : faEye} />
         </Button>
 

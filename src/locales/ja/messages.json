@@ -29,6 +29,10 @@
     "message": "演算子を検索"
   },
 
+  "preference_manageOperators__excludeOperator": {
+    "message": "演算子をサジェストから除外します"
+  },
+
   "googleOperators_exact": {
     "message": "完全一致する文字列を検索します"
   },

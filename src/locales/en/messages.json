@@ -29,6 +29,10 @@
     "message": "Search Operators"
   },
 
+  "preference_manageOperators__excludeOperator": {
+    "message": "Exclude the operator from suggestions"
+  },
+
   "googleOperators_exact": {
     "message": "Search for an exact match"
   },
