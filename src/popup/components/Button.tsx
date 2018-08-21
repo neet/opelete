@@ -22,7 +22,12 @@ export class Button extends React.PureComponent<Props> {
     const { text, children, className } = this.props;
 
     return (
-      <button className={`button ${className}`} aria-label={text} onClick={this.handleClick}>
+      <button
+        className={`button ${className}`}
+        title={text}
+        aria-label={text}
+        onClick={this.handleClick}
+      >
         {children || text}
       </button>
     );
