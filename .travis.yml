@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "8"
+  - "10"
 
 sudo: false
 
@@ -14,11 +14,16 @@ branches:
   only:
     - master
 
+notifications:
+  email: true
+
 install:
   - yarn
 
 before_script:
-  - npm run build:prod
+  - "yarn run build:prod"
 
 script:
-  - npm run test
+  - yarn run compile
+  - yarn run test
+  - yarn run lint

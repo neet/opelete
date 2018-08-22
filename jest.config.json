@@ -1,17 +1,25 @@
 {
-  "projects": [
-    "<rootDir>/src/opelete"
-  ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "testEnvironment": "node",
   "testPathIgnorePatterns": [
-    "<rootDir>/node_modules/"
+    "/node_modules/",
+    "<rootDir>/es/"
   ],
-  "setupFiles": [
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json"
   ],
   "collectCoverageFrom": [
-    "src/opelete/**/*.js"
+    "src/**/*.{ts,tsx}"
   ],
-  "coverageDirectory": "<rootDir>/coverage",
-  "transform": {
-    "^.+\\.js$": "babel-jest"
-  }
+  "coveragePathIgnorePatterns": [
+    ".*\\.d\\.ts"
+  ],
+  "coverageDirectory": "<rootDir>/coverage"
 }

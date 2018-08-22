@@ -1,36 +1,26 @@
 {
   "presets": [
+    "@babel/preset-typescript",
     [
-      "env",
+      "@babel/preset-env",
       {
-        "loose": true,
-        "modules": false,
         "targets": {
-          "browsers": ["last 2 versions"]
-        }
+          "browsers": [
+            "last 1 Firefox versions",
+            "last 1 Chrome versions"
+          ]
+        },
+        "useBuiltIns": "usage"
       }
     ],
-    "stage-2",
-    "react"
+    "@babel/preset-react"
   ],
-
   "plugins": [
-    "transform-react-remove-prop-types",
-    "transform-decorators-legacy",
-    [
-      "transform-runtime",
-      {
-        "polyfill": false,
-        "regenerator": true
-      }
-    ]
-  ],
-
-  "env": {
-    "test": {
-      "plugins": [
-        "transform-es2015-modules-commonjs"
-      ]
-    }
-  }
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose" : true }],
+    "@babel/plugin-proposal-json-strings",
+    "@babel/plugin-proposal-numeric-separator",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta"
+  ]
 }

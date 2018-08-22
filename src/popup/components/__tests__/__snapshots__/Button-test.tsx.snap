@@ -5,6 +5,7 @@ exports[`Button renders a button with function 1`] = `
   aria-label="hoge"
   className="button foo"
   onClick={[Function]}
+  title="hoge"
 >
   hoge
 </button>
@@ -15,6 +16,7 @@ exports[`Button renders a button with link 1`] = `
   aria-label="hoge"
   className="button foo"
   onClick={[Function]}
+  title="hoge"
 >
   hoge
 </button>

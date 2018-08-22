@@ -1,6 +1,6 @@
-import React from 'react';
-import Button from '../Button';
-import renderer from 'react-test-renderer';
+import * as React from 'react';
+import * as renderer from 'react-test-renderer';
+import { Button } from '../Button';
 
 describe('Button', () => {
   it('renders a button with link', () => {
@@ -9,7 +9,7 @@ describe('Button', () => {
         className='foo'
         text='hoge'
         href='https://example.com'
-      />
+      />,
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe('Button', () => {
         className='foo'
         text='hoge'
         onClick={handler}
-      />
+      />,
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
