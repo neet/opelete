@@ -4,9 +4,6 @@ import { Operator, searchOperators } from './operators';
 
 export class Opelete {
 
-  /** Container of root node */
-  private opeleteNode: HTMLDivElement|null = null;
-
   /** Matched suggestions */
   private suggestions: Operator[] = [];
 
@@ -21,6 +18,9 @@ export class Opelete {
 
   /** Google's suggesntion element below of search form */
   private suggestionNode: HTMLDivElement;
+
+  /** Container of root node */
+  private opeleteNode: HTMLDivElement|null = null;
 
   /**
    * @param inputNode Node for the input form
@@ -66,33 +66,6 @@ export class Opelete {
   }
 
   /**
-   * Event listener of the search form
-   * @param e Event of the input
-   */
-  private handleInput = async (e: Event) => {
-    const target = e.target as HTMLInputElement;
-
-    if ( target && target.value === '' || /\s$/.test(target.value) ) {
-      this.clearSuggestion();
-      this.disableForceShowSuggestion();
-      return;
-    }
-
-    // Split search form's value by whitespace
-    // and search operators by the last word
-    // e.g. "JavaScript site" to search by "site"
-    const [, operator] = target.value.match(/([^\s\n]+?)$/) as string[];
-
-    if ( !operator ) {
-      return;
-    }
-
-    this.suggestions = await searchOperators(operator);
-    this.updateSuggestion();
-    this.enableForceShowSuggestion();
-  }
-
-  /**
    * Handle the behaviour when user downs keys
    * @param e Keyboard event object
    * @return nothing
@@ -132,6 +105,33 @@ export class Opelete {
       default:
         break;
     }
+  }
+
+  /**
+   * Event listener of the search form
+   * @param e Event of the input
+   */
+  private handleInput = async (e: Event) => {
+    const target = e.target as HTMLInputElement;
+
+    if ( target && target.value === '' || /\s$/.test(target.value) ) {
+      this.clearSuggestion();
+      this.disableForceShowSuggestion();
+      return;
+    }
+
+    // Split search form's value by whitespace
+    // and search operators by the last word
+    // e.g. "JavaScript site" to search by "site"
+    const [, operator] = target.value.match(/([^\s\n]+?)$/) as string[];
+
+    if ( !operator ) {
+      return;
+    }
+
+    this.suggestions = await searchOperators(operator);
+    this.updateSuggestion();
+    this.enableForceShowSuggestion();
   }
 
   /**
