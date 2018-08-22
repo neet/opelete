@@ -16,20 +16,25 @@ export class Opelete {
   /** Index of suggestion which user focused */
   private focusedSuggestionIndex = 0;
 
+  /** Google's input element of search form  */
+  private inputNode: HTMLInputElement;
+
+  /** Google's suggesntion element below of search form */
+  private suggestionNode: HTMLDivElement;
+
   /**
    * @param inputNode Node for the input form
    * @param suggestionNode Node for the suggestions container
    */
-  constructor (
-    private inputNode: HTMLInputElement,
-    private suggestionNode: HTMLDivElement,
-  ) {
+  constructor (inputNode: HTMLInputElement, suggestionNode: HTMLDivElement) {
+    this.inputNode      = inputNode;
+    this.suggestionNode = suggestionNode;
+
     // Overwrite Google's event listener
     this.inputNode.addEventListener('input', this.handleInput, true);
     this.inputNode.addEventListener('keydown', this.handleKeyDown, true);
     document.addEventListener('keydown', this.handleKeyDown, true);
 
-    // Insert modified suggestions container
     this.initializeNodes();
   }
 
@@ -38,15 +43,12 @@ export class Opelete {
    * and insert before of original suggestion's wrapepr
    * @return Nothing
    */
-  private initializeNodes = async () => {
+  private initializeNodes = async (): Promise<void> => {
     if (!this.suggestionNode) {
       return;
     }
 
-    const { hide_descriptions, operator_blacklist } = await browser.storage.sync.get([
-      'hide_descriptions',
-      'operator_blacklist',
-    ]);
+    const { hide_descriptions, operator_blacklist } = await browser.storage.sync.get();
 
     const node = document.createElement('div');
     node.classList.add('opelete');
@@ -79,17 +81,22 @@ export class Opelete {
     // Split search form's value by whitespace
     // and search operators by the last word
     // e.g. "JavaScript site" to search by "site"
-    const matches = target.value.match(/([^\s\n]+?)$/) as string[];
+    const [, operator] = target.value.match(/([^\s\n]+?)$/) as string[];
 
-    if ( !matches[1] ) {
+    if ( !operator ) {
       return;
     }
 
-    this.suggestions = await searchOperators(matches[1]);
+    this.suggestions = await searchOperators(operator);
     this.updateSuggestion();
     this.enableForceShowSuggestion();
   }
 
+  /**
+   * Handle the behaviour when user downs keys
+   * @param e Keyboard event object
+   * @return nothing
+   */
   private handleKeyDown = (e: KeyboardEvent) => {
     if ( this.suggestions.length === 0 ) {
       return;
@@ -127,6 +134,11 @@ export class Opelete {
     }
   }
 
+  /**
+   * Handle the behaviour when user selected suggestion
+   * @param focusedSuggestion Focused suggestion's Operator object
+   * @return nothing
+   */
   private handleSelect = (focusedSuggestion: Operator) => {
     if (!this.inputNode) {
       return;
