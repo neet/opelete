@@ -27,10 +27,12 @@ export class Popup extends React.Component<Props> {
     }
 
     return (
-      <div className='preferences'>
-        <GeneralSettings />
-        <OperatorManager />
-      </div>
+      <main className='opelete-popup'>
+        <div className='preferences'>
+          <GeneralSettings />
+          <OperatorManager />
+        </div>
+      </main>
     );
   }
 }

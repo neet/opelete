@@ -7,8 +7,11 @@
 }
 
 .opelete-popup {
-  max-width: 360px;
   padding: 8px;
+  height: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 .preference-category:not(:last-child) {
@@ -27,6 +30,10 @@
 
   .preference-modifier__label {
     flex-grow: 1;
+  }
+
+  & > input[type="number"] {
+    width: 30%;
   }
 }
 
@@ -85,16 +92,4 @@
   &:hover {
     color: #000000;
   }
-}
-
-.operator-list-item__meta {
-
-}
-
-.operator-card__operator {
-
-}
-
-.operator-card__description {
-
 }
