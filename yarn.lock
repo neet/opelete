@@ -836,6 +836,12 @@
     "@types/node" "*"
     "@types/react" "*"
 
+"@types/react-test-renderer@^16.0.2":
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.0.2.tgz#2715eae40df08f80b3620c498598c8615693b6c6"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-toggle@^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/@types/react-toggle/-/react-toggle-4.0.2.tgz#46ffa5af1a55de5f25d0aa78ef0b557b5c8bf276"

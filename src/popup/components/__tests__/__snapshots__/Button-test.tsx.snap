@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders a button with function 1`] = `
+<button
+  aria-label="hoge"
+  className="button foo"
+  onClick={[Function]}
+  title="hoge"
+>
+  hoge
+</button>
+`;
+
+exports[`Button renders a button with link 1`] = `
+<button
+  aria-label="hoge"
+  className="button foo"
+  onClick={[Function]}
+  title="hoge"
+>
+  hoge
+</button>
+`;
