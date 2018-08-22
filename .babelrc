@@ -4,7 +4,12 @@
     [
       "@babel/preset-env",
       {
-        "targets": { "browsers": [ "last 2 versions" ] },
+        "targets": {
+          "browsers": [
+            "last 1 Firefox versions",
+            "last 1 Chrome versions"
+          ]
+        },
         "useBuiltIns": "usage"
       }
     ],
